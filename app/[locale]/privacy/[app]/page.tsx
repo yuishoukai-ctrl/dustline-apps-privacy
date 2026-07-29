@@ -39,9 +39,10 @@ export default async function PrivacyPage({ params }: PageProps) {
             <Link href={`/${otherLocale}/privacy/${app.slug}`}>Read in English →</Link>
           </aside>
           <article className="policyBody">
-            {app.health && (
+            {(app.health || app.noticeJa) && (
               <p className="notice">
-                本アプリは記録・情報整理を目的とし、獣医師による診断、治療、医療上の助言を提供するものではありません。健康上の懸念がある場合は、獣医師にご相談ください。
+                {app.noticeJa ??
+                  "本アプリは記録・情報整理を目的とし、獣医師による診断、治療、医療上の助言を提供するものではありません。健康上の懸念がある場合は、獣医師にご相談ください。"}
               </p>
             )}
             <section>
@@ -70,6 +71,24 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ペットの基本情報、体重、健康状態、投薬、ワクチン、通院、ケア予定など</li>
                   <li>ユーザーが選択した写真、動画、書類</li>
                   <li>端末の生体認証・画面ロック機能を利用するアプリロック設定（認証情報そのものを本アプリが取得することはありません）</li>
+                </ul>
+              )}
+              {app.slug === "aquarium-log" && (
+                <ul>
+                  <li>水槽情報、水質測定値、生体の観察、飼育・メンテナンス記録、メモ、リマインダー</li>
+                  <li>ユーザーが選択した写真やPDF資料</li>
+                </ul>
+              )}
+              {app.slug === "bee-logbook" && (
+                <ul>
+                  <li>養蜂場、巣箱、点検、タスク、メモ、リマインダー</li>
+                  <li>ユーザーが選択した写真やPDF資料</li>
+                </ul>
+              )}
+              {app.slug === "sewing-stash" && (
+                <ul>
+                  <li>布の在庫、制作物、買い物リスト、型紙、メモ</li>
+                  <li>ユーザーが選択した写真やPDF資料</li>
                 </ul>
               )}
               <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
@@ -120,7 +139,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             </section>
             <section>
               <h2>9. お問い合わせ</h2>
-              <p>プライバシーまたは本アプリに関するお問い合わせは、<a href="mailto:dustlineadv@gmail.com">dustlineadv@gmail.com</a> へご連絡ください。</p>
+              <p>プライバシーまたは本アプリに関するお問い合わせは、<a href="mailto:support@dustline.jp">support@dustline.jp</a> へご連絡ください。</p>
             </section>
           </article>
         </div>
@@ -137,9 +156,10 @@ export default async function PrivacyPage({ params }: PageProps) {
           <Link href={`/${otherLocale}/privacy/${app.slug}`}>日本語で読む →</Link>
         </aside>
         <article className="policyBody">
-          {app.health && (
+          {(app.health || app.noticeEn) && (
             <p className="notice">
-              This app is a record-keeping and organization tool. It does not provide veterinary diagnosis, treatment, or medical advice. Consult a licensed veterinarian about health concerns.
+              {app.noticeEn ??
+                "This app is a record-keeping and organization tool. It does not provide veterinary diagnosis, treatment, or medical advice. Consult a licensed veterinarian about health concerns."}
             </p>
           )}
           <section>
@@ -168,6 +188,24 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Pet profile, weight, health, medication, vaccine, veterinary visit, and care records you enter</li>
                 <li>Photos, videos, and documents you choose</li>
                 <li>App-lock settings that use device authentication; the app does not receive or store your biometric credentials</li>
+              </ul>
+            )}
+            {app.slug === "aquarium-log" && (
+              <ul>
+                <li>Tank profiles, water readings, livestock observations, care and maintenance records, notes, and reminders</li>
+                <li>Photos and PDF documents you choose</li>
+              </ul>
+            )}
+            {app.slug === "bee-logbook" && (
+              <ul>
+                <li>Apiaries, hive profiles, inspections, tasks, notes, and reminders</li>
+                <li>Photos and PDF documents you choose</li>
+              </ul>
+            )}
+            {app.slug === "sewing-stash" && (
+              <ul>
+                <li>Fabric inventory, projects, shopping lists, patterns, and notes</li>
+                <li>Photos and PDF documents you choose</li>
               </ul>
             )}
             <p>These records stay on your device and are not sent to a server operated by the developer.</p>
@@ -218,7 +256,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           </section>
           <section>
             <h2>9. Contact</h2>
-            <p>For privacy or app questions, email <a href="mailto:dustlineadv@gmail.com">dustlineadv@gmail.com</a>.</p>
+            <p>For privacy or app questions, email <a href="mailto:support@dustline.jp">support@dustline.jp</a>.</p>
           </section>
         </article>
       </div>

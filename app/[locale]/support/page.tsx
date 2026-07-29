@@ -45,7 +45,7 @@ export default async function SupportPage({ params }: PageProps) {
                 ? "アプリ名、端末機種、Androidのバージョン、問題が発生した手順をお知らせください。機密情報や健康情報そのものは送らないでください。"
                 : "Include the app name, device model, Android version, and steps that led to the problem. Do not email sensitive data or the health-record contents themselves."}
             </p>
-            <a href="mailto:dustlineadv@gmail.com">dustlineadv@gmail.com</a>
+            <a href="mailto:support@dustline.jp">support@dustline.jp</a>
           </section>
           <section className="supportCard">
             <p className="eyebrow">{locale === "ja" ? "プライバシー" : "Privacy"}</p>

@@ -29,7 +29,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </div>
         <div className="footerLinks">
           <Link href={`/${locale}/support`}>{locale === "ja" ? "サポート" : "Support"}</Link>
-          <a href="mailto:dustlineadv@gmail.com">dustlineadv@gmail.com</a>
+          <a href="mailto:support@dustline.jp">support@dustline.jp</a>
         </div>
       </div>
     </footer>
