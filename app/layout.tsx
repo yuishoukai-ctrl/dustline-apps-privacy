@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   },
   description:
     "Official privacy policies and support for Noise Diary & dB Meter, Vegetable Garden Journal, and Pet Health & Care Binder.",
-  metadataBase: new URL("https://dustline-apps.openai.site"),
+  metadataBase: new URL("https://yuishoukai-ctrl.github.io/dustline-apps-privacy/"),
   openGraph: {
     title: "Dustline Apps — Privacy & Support",
     description: "Small tools. Clear privacy.",
     type: "website",
-    images: ["/og.png"],
+    images: ["https://yuishoukai-ctrl.github.io/dustline-apps-privacy/og.png"],
   },
 };
 
