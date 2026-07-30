@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Dustline Apps",
   },
   description:
-    "Official privacy policies and support for Noise Diary & dB Meter, Vegetable Garden Journal, and Pet Health & Care Binder.",
+    "Official privacy policies and support for mobile apps published by Dustline Apps.",
   metadataBase: new URL("https://yuishoukai-ctrl.github.io/dustline-apps-privacy/"),
   openGraph: {
     title: "Dustline Apps — Privacy & Support",

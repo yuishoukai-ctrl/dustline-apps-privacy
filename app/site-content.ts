@@ -129,10 +129,72 @@ export const apps: AppInfo[] = [
         "布の在庫、制作物、買い物リスト、型紙、添付資料を端末内で整理するアプリです。",
     },
   },
+  {
+    slug: "leaselens",
+    icon: "⌂",
+    category: "Rental inspection records",
+    accent: "blue",
+    ads: false,
+    health: false,
+    noticeEn:
+      "This app helps organize user-entered rental condition records. It does not provide legal advice or determine liability.",
+    noticeJa:
+      "本アプリはユーザーが入力した賃貸物件の状態記録を整理するもので、法的助言や責任の判定を行いません。",
+    en: {
+      name: "LeaseLens",
+      summary:
+        "Document move-in and move-out condition notes, photos, and reports privately on your device.",
+    },
+    ja: {
+      name: "LeaseLens 賃貸物件チェック",
+      summary:
+        "入居時・退去時の状態、メモ、写真、比較レポートを端末内で管理するアプリです。",
+    },
+  },
+  {
+    slug: "rigkeeper",
+    icon: "◆",
+    category: "RV maintenance records",
+    accent: "rose",
+    ads: false,
+    health: false,
+    noticeEn:
+      "This app organizes user-entered maintenance records and reminders. It does not replace manufacturer guidance or professional inspection.",
+    noticeJa:
+      "本アプリはユーザーが入力した整備記録とリマインダーを整理するもので、メーカーの案内や専門家による点検の代替ではありません。",
+    en: {
+      name: "RigKeeper",
+      summary:
+        "Track RV maintenance by date, mileage, and engine hours, with local reports and reminders.",
+    },
+    ja: {
+      name: "RigKeeper RV整備記録",
+      summary:
+        "日付、走行距離、稼働時間によるRV整備記録、レポート、通知を端末内で管理します。",
+    },
+  },
+  {
+    slug: "homeschool-binder",
+    icon: "▤",
+    category: "Homeschool records",
+    accent: "green",
+    ads: false,
+    health: false,
+    en: {
+      name: "Homeschool Binder",
+      summary:
+        "Keep parent-managed student, attendance, learning, and work-sample records private on your device.",
+    },
+    ja: {
+      name: "Homeschool Binder 学習記録",
+      summary:
+        "保護者が管理する生徒、出席、学習、作品の記録を端末内に保存するアプリです。",
+    },
+  },
 ];
 
-export const updatedDate = "July 29, 2026";
-export const updatedDateJa = "2026年7月29日";
+export const updatedDate = "July 30, 2026";
+export const updatedDateJa = "2026年7月30日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);

@@ -91,6 +91,28 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが選択した写真やPDF資料</li>
                 </ul>
               )}
+              {app.slug === "leaselens" && (
+                <ul>
+                  <li>物件名・住所、部屋、入居時・退去時の状態、メモ、日付などの点検記録</li>
+                  <li>ユーザーがカメラまたは写真選択機能から追加した写真</li>
+                  <li>ユーザーが作成したPDFレポートおよびJSONバックアップ</li>
+                </ul>
+              )}
+              {app.slug === "rigkeeper" && (
+                <ul>
+                  <li>RVの名称、走行距離、稼働時間、部品、整備内容、費用、日付などの記録</li>
+                  <li>ユーザーが設定した整備期限と、明示的に有効化した端末通知</li>
+                  <li>ユーザーが作成したPDF・CSVレポートおよびJSONバックアップ</li>
+                </ul>
+              )}
+              {app.slug === "homeschool-binder" && (
+                <ul>
+                  <li>保護者が入力する生徒の名前、出席、科目、学習内容、時間、メモなどの教育記録</li>
+                  <li>保護者がカメラまたは写真選択機能から追加した作品写真</li>
+                  <li>任意のアプリPINを保護するため端末の安全な保存領域に保持するソルト付きハッシュ（PINそのものは保存しません）</li>
+                  <li>ユーザーが作成したPDF・CSVレポートおよびJSONバックアップ</li>
+                </ul>
+              )}
               <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
             </section>
             <section>
@@ -125,7 +147,13 @@ export default async function PrivacyPage({ params }: PageProps) {
             </section>
             <section>
               <h2>6. 子どものプライバシー</h2>
-              <p>本アプリは13歳未満の子どもを対象としておらず、開発者が13歳未満の個人情報を意図的に収集することはありません。</p>
+              {app.slug === "homeschool-binder" ? (
+                <p>
+                  本アプリは保護者または成人の教育者が学習記録を管理するためのもので、子どもが単独で利用することを想定していません。保護者が入力した生徒情報は端末内に保存され、開発者のサーバーへ送信されません。保護者はアプリ内で記録を削除できます。
+                </p>
+              ) : (
+                <p>本アプリは13歳未満の子どもを対象としておらず、開発者が13歳未満の個人情報を意図的に収集することはありません。</p>
+              )}
             </section>
             <section>
               <h2>7. セキュリティ</h2>
@@ -208,6 +236,28 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Photos and PDF documents you choose</li>
               </ul>
             )}
+            {app.slug === "leaselens" && (
+              <ul>
+                <li>Property name or address, rooms, move-in and move-out condition, notes, dates, and other inspection records you enter</li>
+                <li>Photos you add using the camera or device photo picker</li>
+                <li>PDF reports and JSON backups you create</li>
+              </ul>
+            )}
+            {app.slug === "rigkeeper" && (
+              <ul>
+                <li>RV name, mileage, engine hours, components, maintenance work, cost, date, and related records you enter</li>
+                <li>Maintenance targets and device notifications you explicitly enable</li>
+                <li>PDF and CSV reports and JSON backups you create</li>
+              </ul>
+            )}
+            {app.slug === "homeschool-binder" && (
+              <ul>
+                <li>Student name, attendance, subject, learning activity, duration, notes, and other education records entered by a parent or adult educator</li>
+                <li>Work-sample photos added using the camera or device photo picker</li>
+                <li>A salted hash kept in secure device storage for an optional app PIN; the PIN itself is not stored</li>
+                <li>PDF and CSV reports and JSON backups you create</li>
+              </ul>
+            )}
             <p>These records stay on your device and are not sent to a server operated by the developer.</p>
           </section>
           <section>
@@ -242,7 +292,13 @@ export default async function PrivacyPage({ params }: PageProps) {
           </section>
           <section>
             <h2>6. Children&apos;s privacy</h2>
-            <p>The app is not directed to children under 13, and the developer does not knowingly collect personal information from children under 13.</p>
+            {app.slug === "homeschool-binder" ? (
+              <p>
+                The app is intended for a parent, guardian, or adult educator to manage learning records, not for a child to use independently. Student information entered by the adult stays on the device and is not sent to a developer-operated server. The adult can delete records in the app.
+              </p>
+            ) : (
+              <p>The app is not directed to children under 13, and the developer does not knowingly collect personal information from children under 13.</p>
+            )}
           </section>
           <section>
             <h2>7. Security</h2>
