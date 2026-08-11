@@ -161,6 +161,11 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>
                 端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。Googleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}にはGoogleの保存方針が適用されます。
               </p>
+              {app.slug === "garden-diary" && (
+                <p>
+                  本アプリの設定画面で「すべての記録を削除」を選択すると、菜園、植物、タスク、記録、収穫、保存写真を端末から削除できます。この操作は元に戻せません。広告・購入関連データはGoogleが処理するため、Googleの保存・削除方針が適用されます。
+                </p>
+              )}
             </section>
             <section>
               <h2>6. 子どものプライバシー</h2>
@@ -323,6 +328,11 @@ export default async function PrivacyPage({ params }: PageProps) {
             <p>
               Local data remains until you delete it in the app or uninstall the app. You must separately delete exported files or copies held by a sharing destination. Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} it processes.
             </p>
+            {app.slug === "garden-diary" && (
+              <p>
+                In the app, open Settings and choose Delete all records to remove gardens, plants, tasks, logs, harvests, and saved photos from your device. This cannot be undone. Google processes advertising and purchase data, so Google&apos;s retention and deletion policies apply to that data.
+              </p>
+            )}
           </section>
           <section>
             <h2>6. Children&apos;s privacy</h2>
