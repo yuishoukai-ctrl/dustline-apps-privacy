@@ -113,7 +113,24 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが作成したPDF・CSVレポートおよびJSONバックアップ</li>
                 </ul>
               )}
+              {app.slug === "move-markr" && (
+                <ul>
+                  <li>物件名、部屋名、チェック項目、所見などの検査記録</li>
+                  <li>ユーザーが選択した元写真、レポート履歴、書き出し情報</li>
+                  <li>書き出した証跡の整合性確認に使うSHA-256ハッシュ</li>
+                </ul>
+              )}
+              {app.slug === "try-clock" && (
+                <ul>
+                  <li>品名、販売店、価格、購入日、返品期限、状態、メモ</li>
+                  <li>ユーザーが選択した写真または書類への参照</li>
+                  <li>通知、言語、プレミアム利用状態などの設定</li>
+                </ul>
+              )}
               <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
+              {app.slug === "try-clock" && (
+                <p>Androidのバックアップを有効にしている場合、端末設定に従ってアプリのローカルデータがGoogleアカウントへバックアップされる場合があります。</p>
+              )}
             </section>
             <section>
               <h2>3. 第三者サービス</h2>
@@ -142,7 +159,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             <section>
               <h2>5. 保存期間と削除</h2>
               <p>
-                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。Googleが処理する広告・購入関連データにはGoogleの保存方針が適用されます。
+                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。Googleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}にはGoogleの保存方針が適用されます。
               </p>
             </section>
             <section>
@@ -152,7 +169,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                   本アプリは保護者または成人の教育者が学習記録を管理するためのもので、子どもが単独で利用することを想定していません。保護者が入力した生徒情報は端末内に保存され、開発者のサーバーへ送信されません。保護者はアプリ内で記録を削除できます。
                 </p>
               ) : (
-                <p>本アプリは13歳未満の子どもを対象としておらず、開発者が13歳未満の個人情報を意図的に収集することはありません。</p>
+                <p>本アプリは{app.childrenAge ?? 13}歳未満の子どもを対象としておらず、開発者が{app.childrenAge ?? 13}歳未満の個人情報を意図的に収集することはありません。</p>
               )}
             </section>
             <section>
@@ -258,7 +275,24 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>PDF and CSV reports and JSON backups you create</li>
               </ul>
             )}
+            {app.slug === "move-markr" && (
+              <ul>
+                <li>Property and room labels, checklist results, and observations you enter</li>
+                <li>Original photos you select, report history, and exported-report metadata</li>
+                <li>SHA-256 integrity hashes used to verify exported evidence</li>
+              </ul>
+            )}
+            {app.slug === "try-clock" && (
+              <ul>
+                <li>Item names, retailers, prices, purchase dates, return deadlines, statuses, and notes</li>
+                <li>References to photos or documents you select</li>
+                <li>Notification, language, and local Premium entitlement settings</li>
+              </ul>
+            )}
             <p>These records stay on your device and are not sent to a server operated by the developer.</p>
+            {app.slug === "try-clock" && (
+              <p>If Android device backup is enabled, Android may back up the local app database under your Google account settings.</p>
+            )}
           </section>
           <section>
             <h2>3. Third-party services</h2>
@@ -287,7 +321,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <section>
             <h2>5. Retention and deletion</h2>
             <p>
-              Local data remains until you delete it in the app or uninstall the app. You must separately delete exported files or copies held by a sharing destination. Google&apos;s retention policies apply to advertising and purchase data it processes.
+              Local data remains until you delete it in the app or uninstall the app. You must separately delete exported files or copies held by a sharing destination. Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} it processes.
             </p>
           </section>
           <section>
@@ -297,7 +331,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 The app is intended for a parent, guardian, or adult educator to manage learning records, not for a child to use independently. Student information entered by the adult stays on the device and is not sent to a developer-operated server. The adult can delete records in the app.
               </p>
             ) : (
-              <p>The app is not directed to children under 13, and the developer does not knowingly collect personal information from children under 13.</p>
+              <p>The app is not directed to children under {app.childrenAge ?? 13}, and the developer does not knowingly collect personal information from children under {app.childrenAge ?? 13}.</p>
             )}
           </section>
           <section>

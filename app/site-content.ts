@@ -12,6 +12,7 @@ export type AppInfo = {
   accent: "blue" | "green" | "rose";
   ads: boolean;
   health: boolean;
+  childrenAge?: 13 | 18;
   noticeEn?: string;
   noticeJa?: string;
   en: LocalizedApp;
@@ -26,6 +27,7 @@ export const apps: AppInfo[] = [
     accent: "blue",
     ads: true,
     health: false,
+    childrenAge: 13,
     en: {
       name: "Noise Diary & dB Meter",
       summary: "Record surrounding sound levels and keep a private noise diary.",
@@ -42,6 +44,7 @@ export const apps: AppInfo[] = [
     accent: "green",
     ads: true,
     health: false,
+    childrenAge: 13,
     en: {
       name: "Vegetable Garden Journal",
       summary: "Keep planting, growth, harvest, and garden photo records together.",
@@ -58,6 +61,7 @@ export const apps: AppInfo[] = [
     accent: "rose",
     ads: false,
     health: true,
+    childrenAge: 13,
     en: {
       name: "Pet Health & Care Binder",
       summary: "Organize pet health, medication, vaccine, visit, and document records.",
@@ -191,10 +195,44 @@ export const apps: AppInfo[] = [
         "保護者が管理する生徒、出席、学習、作品の記録を端末内に保存するアプリです。",
     },
   },
+  {
+    slug: "move-markr",
+    icon: "⌂",
+    category: "Rental evidence",
+    accent: "blue",
+    ads: false,
+    health: false,
+    childrenAge: 13,
+    en: {
+      name: "MoveMarkr",
+      summary: "Document rental condition with photos, checklists, and exportable evidence.",
+    },
+    ja: {
+      name: "MoveMarkr",
+      summary: "賃貸物件の状態を写真、チェックリスト、書き出し可能な証跡として端末内に保存します。",
+    },
+  },
+  {
+    slug: "try-clock",
+    icon: "◷",
+    category: "Return reminders",
+    accent: "rose",
+    ads: false,
+    health: false,
+    childrenAge: 18,
+    en: {
+      name: "TryClock",
+      summary: "Track return deadlines, purchase details, notes, and reminders on your device.",
+    },
+    ja: {
+      name: "TryClock",
+      summary: "返品期限、購入情報、メモ、リマインダーを端末内で管理します。",
+    },
+  },
 ];
 
-export const updatedDate = "July 30, 2026";
-export const updatedDateJa = "2026年7月30日";
+export const updatedDate = "August 11, 2026";
+export const updatedDateJa = "2026年8月11日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);
