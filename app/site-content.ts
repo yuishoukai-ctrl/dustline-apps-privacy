@@ -196,6 +196,75 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "trayvault",
+    icon: "❄",
+    category: "Freeze-drying records",
+    accent: "blue",
+    ads: false,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "This app records user-entered freeze-drying activity. It does not control an appliance or determine food safety, dryness, shelf life, or safe storage.",
+    noticeJa:
+      "本アプリはユーザーが入力したフリーズドライ記録を管理するもので、機器の制御、食品の安全性、乾燥完了、保存期限、安全な保管方法の判定を行いません。",
+    en: {
+      name: "TrayVault: Freeze Dryer Log",
+      summary:
+        "Track freeze-dryer batches, trays, settings, dry checks, and pantry lots privately on your device.",
+    },
+    ja: {
+      name: "TrayVault フリーズドライ記録",
+      summary:
+        "フリーズドライのバッチ、トレイ、設定、乾燥確認、保存ロットを端末内で管理します。",
+    },
+  },
+  {
+    slug: "boothworth",
+    icon: "⌃",
+    category: "Craft fair planning",
+    accent: "rose",
+    ads: false,
+    health: false,
+    childrenAge: 18,
+    noticeEn:
+      "This app provides estimates from values entered by the user. It does not process payments or provide accounting, tax, legal, investment, or sales advice.",
+    noticeJa:
+      "本アプリはユーザーの入力値から概算を表示するもので、決済処理、会計・税務・法務・投資・販売上の助言を行いません。",
+    en: {
+      name: "BoothWorth: Craft Fair Planner",
+      summary:
+        "Evaluate event profit, plan stock and load-in, and compare results privately on your device.",
+    },
+    ja: {
+      name: "BoothWorth クラフトフェア計画",
+      summary:
+        "出店採算、商品数、搬入準備、販売結果を端末内で計画・比較します。",
+    },
+  },
+  {
+    slug: "roasttrace",
+    icon: "◒",
+    category: "Coffee roasting records",
+    accent: "green",
+    ads: false,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "This app records user-entered coffee roasting activity. It does not control roasting equipment, determine safe operation, or replace manufacturer instructions. Timers and notifications are not safety devices.",
+    noticeJa:
+      "本アプリはユーザーが入力したコーヒー焙煎記録を管理するもので、焙煎機の制御、安全な運転の判定、メーカー説明書の代替を行いません。タイマーや通知は安全装置ではありません。",
+    en: {
+      name: "RoastTrace: Coffee Roast Log",
+      summary:
+        "Record roast events, temperatures, weight loss, green beans, and cupping notes on your device.",
+    },
+    ja: {
+      name: "RoastTrace コーヒー焙煎ログ",
+      summary:
+        "焙煎イベント、温度、重量変化、生豆在庫、試飲メモを端末内に保存します。",
+    },
+  },
+  {
     slug: "move-markr",
     icon: "⌂",
     category: "Rental evidence",
@@ -231,8 +300,8 @@ export const apps: AppInfo[] = [
   },
 ];
 
-export const updatedDate = "August 11, 2026";
-export const updatedDateJa = "2026年8月11日";
+export const updatedDate = "August 12, 2026";
+export const updatedDateJa = "2026年8月12日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);

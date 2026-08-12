@@ -113,6 +113,27 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが作成したPDF・CSVレポートおよびJSONバックアップ</li>
                 </ul>
               )}
+              {app.slug === "trayvault" && (
+                <ul>
+                  <li>乾燥機、バッチ、トレイ内容、前処理、設定、開始・終了時刻、乾燥確認、重量、評価、メモ</li>
+                  <li>保存ロットの数量、包装日、保存場所、使用・廃棄の記録</li>
+                  <li>ユーザーが追加した写真、明示的に有効化した通知、作成したJSONバックアップ、PDF・CSVレポート</li>
+                </ul>
+              )}
+              {app.slug === "boothworth" && (
+                <ul>
+                  <li>商品名、価格、原価、製作時間、商品数、写真などの商品計画</li>
+                  <li>イベント名、会場、日付、出店判断、費用、売上、搬入チェック、結果、メモ</li>
+                  <li>ユーザーが追加したレシート写真、明示的に有効化した通知、作成したJSONバックアップ、PDF・CSVレポート</li>
+                </ul>
+              )}
+              {app.slug === "roasttrace" && (
+                <ul>
+                  <li>焙煎機、生豆ロット、在庫、購入情報、焙煎セッション、経過時間、温度、焙煎イベント、重量</li>
+                  <li>香り、酸味、甘味、苦味、ボディ、評価、試飲メモ</li>
+                  <li>ユーザーが追加した写真、明示的に有効化した通知、作成したJSONバックアップ、PDF・CSVレポート</li>
+                </ul>
+              )}
               {app.slug === "move-markr" && (
                 <ul>
                   <li>物件名、部屋名、チェック項目、所見などの検査記録</li>
@@ -278,6 +299,27 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Work-sample photos added using the camera or device photo picker</li>
                 <li>A salted hash kept in secure device storage for an optional app PIN; the PIN itself is not stored</li>
                 <li>PDF and CSV reports and JSON backups you create</li>
+              </ul>
+            )}
+            {app.slug === "trayvault" && (
+              <ul>
+                <li>Dryer, batch, tray contents, preparation, settings, start and end times, dry checks, weights, ratings, and notes you enter</li>
+                <li>Pantry-lot quantity, packaging date, storage location, use, and discard records</li>
+                <li>Photos you add, notifications you explicitly enable, and JSON backups, PDF reports, or CSV files you create</li>
+              </ul>
+            )}
+            {app.slug === "boothworth" && (
+              <ul>
+                <li>Product name, price, cost, labor time, quantity, photo, and other product-planning details you enter</li>
+                <li>Event name, venue, date, attendance decision, expenses, sales, load-in checklist, results, and notes</li>
+                <li>Receipt photos you add, notifications you explicitly enable, and JSON backups, PDF reports, or CSV files you create</li>
+              </ul>
+            )}
+            {app.slug === "roasttrace" && (
+              <ul>
+                <li>Roaster, green-bean lot, inventory, purchase, roast-session, elapsed-time, temperature, roast-event, and weight records you enter</li>
+                <li>Aroma, acidity, sweetness, bitterness, body, rating, and cupping notes you enter</li>
+                <li>Photos you add, notifications you explicitly enable, and JSON backups, PDF reports, or CSV files you create</li>
               </ul>
             )}
             {app.slug === "move-markr" && (
