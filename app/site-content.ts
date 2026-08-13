@@ -265,6 +265,29 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "flockledger",
+    icon: "▥",
+    category: "Backyard flock records",
+    accent: "rose",
+    ads: false,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "This app records user-entered flock activity. It does not diagnose animals, recommend medication or withdrawal periods, determine whether eggs are safe to eat, or provide accounting or tax advice.",
+    noticeJa:
+      "本アプリはユーザーが入力した鶏群の活動記録を管理するもので、動物の診断、投薬・休薬期間の助言、卵の食用可否、会計・税務上の判断を行いません。",
+    en: {
+      name: "FlockLedger: Chicken & Egg Log",
+      summary:
+        "Record backyard flock eggs, feed, costs, sales, birds, and care notes privately on your device.",
+    },
+    ja: {
+      name: "FlockLedger 鶏・採卵・費用台帳",
+      summary:
+        "鶏群、採卵、飼料、費用、売上、個体、ケアメモを端末内で記録します。",
+    },
+  },
+  {
     slug: "move-markr",
     icon: "⌂",
     category: "Rental evidence",
@@ -300,8 +323,8 @@ export const apps: AppInfo[] = [
   },
 ];
 
-export const updatedDate = "August 12, 2026";
-export const updatedDateJa = "2026年8月12日";
+export const updatedDate = "August 13, 2026";
+export const updatedDateJa = "2026年8月13日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);

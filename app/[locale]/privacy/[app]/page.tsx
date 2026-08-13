@@ -134,6 +134,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが追加した写真、明示的に有効化した通知、作成したJSONバックアップ、PDF・CSVレポート</li>
                 </ul>
               )}
+              {app.slug === "flockledger" && (
+                <ul>
+                  <li>鶏群名、個体名・識別ID、品種、状態などの鶏群・個体記録</li>
+                  <li>採卵数、飼料使用量、飼料費、その他費用、卵の売上、日付、メモ</li>
+                  <li>ユーザーが入力したケア観察記録、明示的に有効化した端末通知、作成したJSONバックアップ</li>
+                </ul>
+              )}
               {app.slug === "move-markr" && (
                 <ul>
                   <li>物件名、部屋名、チェック項目、所見などの検査記録</li>
@@ -320,6 +327,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Roaster, green-bean lot, inventory, purchase, roast-session, elapsed-time, temperature, roast-event, and weight records you enter</li>
                 <li>Aroma, acidity, sweetness, bitterness, body, rating, and cupping notes you enter</li>
                 <li>Photos you add, notifications you explicitly enable, and JSON backups, PDF reports, or CSV files you create</li>
+              </ul>
+            )}
+            {app.slug === "flockledger" && (
+              <ul>
+                <li>Flock names and bird names or identifiers, breeds, statuses, and related flock and bird records you enter</li>
+                <li>Egg counts, feed quantities, feed cost, other expenses, egg sales, dates, and notes you enter</li>
+                <li>Care observations you enter, device notifications you explicitly enable, and JSON backups you create</li>
               </ul>
             )}
             {app.slug === "move-markr" && (

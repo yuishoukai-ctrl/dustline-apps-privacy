@@ -18,6 +18,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /TrayVault/);
   assert.match(html, /BoothWorth/);
   assert.match(html, /RoastTrace/);
+  assert.match(html, /FlockLedger/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -28,6 +29,7 @@ for (const app of [
   { slug: "trayvault", en: "TrayVault", ja: "フリーズドライ記録" },
   { slug: "boothworth", en: "BoothWorth", ja: "クラフトフェア計画" },
   { slug: "roasttrace", en: "RoastTrace", ja: "コーヒー焙煎ログ" },
+  { slug: "flockledger", en: "FlockLedger", ja: "FlockLedger 鶏・採卵・費用台帳" },
 ]) {
   test(`exports English and Japanese privacy pages for ${app.slug}`, async () => {
     const [en, ja] = await Promise.all([
@@ -54,6 +56,20 @@ test("states the parent-managed child-data model for Homeschool Binder", async (
   assert.match(en, /not sent to a developer-operated server/);
   assert.match(ja, /保護者または成人の教育者/);
   assert.match(ja, /開発者のサーバーへ送信されません/);
+});
+
+test("states FlockLedger local-data and animal-care boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/flockledger/index.html"),
+    page("ja/privacy/flockledger/index.html"),
+  ]);
+
+  assert.match(en, /Flock names and bird names or identifiers/);
+  assert.match(en, /Egg counts, feed quantities, feed cost, other expenses, egg sales/);
+  assert.match(en, /does not diagnose animals/);
+  assert.match(ja, /鶏群名、個体名・識別ID、品種、状態/);
+  assert.match(ja, /採卵数、飼料使用量、飼料費、その他費用、卵の売上/);
+  assert.match(ja, /動物の診断/);
 });
 
 test("states app-specific safety and business boundaries for the next three apps", async () => {
