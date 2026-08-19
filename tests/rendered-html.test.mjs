@@ -19,11 +19,13 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /BoothWorth/);
   assert.match(html, /RoastTrace/);
   assert.match(html, /FlockLedger/);
+  assert.match(html, /Batch Cost by DUSTLINE/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
 for (const app of [
   { slug: "aquarium-log", en: "Aquarium Log by DUSTLINE", ja: "Aquarium Log by DUSTLINE（水槽管理）" },
+  { slug: "batch-cost", en: "Batch Cost by DUSTLINE", ja: "Batch Cost by DUSTLINE（レシピ原価計算）" },
   { slug: "leaselens", en: "LeaseLens", ja: "賃貸物件チェック" },
   { slug: "rigkeeper", en: "RigKeeper", ja: "RV整備記録" },
   { slug: "homeschool-binder", en: "Homeschool Binder", ja: "学習記録" },
@@ -46,6 +48,20 @@ for (const app of [
     assert.match(ja, /support@dustline\.jp/);
   });
 }
+
+test("states Batch Cost local-data and calculation boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/batch-cost/index.html"),
+    page("ja/privacy/batch-cost/index.html"),
+  ]);
+
+  assert.match(en, /Ingredient names, package quantities, package prices/);
+  assert.match(en, /does not provide tax, accounting, pricing, food-safety, or nutrition advice/);
+  assert.match(en, /uninstall the app to remove all of its records/);
+  assert.match(ja, /材料名、購入量、購入価格、単位/);
+  assert.match(ja, /税務・会計・価格設定・食品衛生・栄養/);
+  assert.match(ja, /本アプリをアンインストール/);
+});
 
 test("states the parent-managed child-data model for Homeschool Binder", async () => {
   const [en, ja] = await Promise.all([
