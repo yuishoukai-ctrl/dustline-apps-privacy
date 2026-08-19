@@ -93,6 +93,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーがカメラで撮影または写真ライブラリから選択した点検写真</li>
                 </ul>
               )}
+              {app.slug === "bichiku-checker" && (
+                <ul>
+                  <li>備蓄品名、数量、購入日、期限、保管場所、メモなどの在庫記録</li>
+                  <li>家族構成、必要量、カスタムカテゴリ、言語、端末内のプレミアム利用状態</li>
+                  <li>ユーザーが明示的に有効化した期限通知、作成したJSONバックアップおよびPDFレポート</li>
+                </ul>
+              )}
               {app.slug === "sewing-stash" && (
                 <ul>
                   <li>布の在庫、制作物、買い物リスト、型紙、メモ</li>
@@ -173,10 +180,10 @@ export default async function PrivacyPage({ params }: PageProps) {
               {app.ads ? (
                 <>
                   <p>
-                    本アプリは、広告表示と同意管理のためGoogle Mobile Ads SDK（AdMob）およびGoogle User Messaging Platform（UMP）を使用します。これらのサービスは、広告・マーケティング、分析、不正防止、セキュリティ、法令遵守のため、IPアドレスから推定されるおおよその位置情報、アプリ操作、診断情報、端末IDその他の識別子を自動的に収集または共有する場合があります。通信中のデータは暗号化されます。
+                    {app.adsAndroidOnly ? "Android版は、" : "本アプリは、"}広告表示と同意管理のためGoogle Mobile Ads SDK（AdMob）およびGoogle User Messaging Platform（UMP）を使用します。これらのサービスは、広告・マーケティング、分析、不正防止、セキュリティ、法令遵守のため、IPアドレスから推定されるおおよその位置情報、アプリ操作、診断情報、端末IDその他の識別子を自動的に収集または共有する場合があります。通信中のデータは暗号化されます。
                   </p>
                   <p>
-                    対象地域ではUMP画面から同意やプライバシー設定を選択できます。プレミアム購入後は広告を表示しません。
+                    対象地域ではUMP画面から同意やプライバシー設定を選択できます。{app.adsAndroidOnly ? "iOS版では広告を表示せず、AdMobを起動しません。" : "プレミアム購入後は広告を表示しません。"}
                   </p>
                 </>
               ) : (
@@ -296,6 +303,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Inspection photos you take with the camera or choose from the photo library</li>
               </ul>
             )}
+            {app.slug === "bichiku-checker" && (
+              <ul>
+                <li>Inventory records you enter, including item name, quantity, purchase date, expiration date, storage location, and notes</li>
+                <li>Household profile, calculated targets, custom categories, language, and local Premium entitlement settings</li>
+                <li>Expiration notifications you explicitly enable and JSON backups or PDF reports you create</li>
+              </ul>
+            )}
             {app.slug === "sewing-stash" && (
               <ul>
                 <li>Fabric inventory, projects, shopping lists, patterns, and notes</li>
@@ -376,10 +390,10 @@ export default async function PrivacyPage({ params }: PageProps) {
             {app.ads ? (
               <>
                 <p>
-                  The app uses Google Mobile Ads SDK (AdMob) and Google User Messaging Platform (UMP) for advertising and consent management. These services may automatically collect or share approximate location inferred from IP address, app interactions, diagnostics, device identifiers, and other identifiers for advertising or marketing, analytics, fraud prevention, security, and compliance. Data is encrypted in transit.
+                  {app.adsAndroidOnly ? "The Android version uses" : "The app uses"} Google Mobile Ads SDK (AdMob) and Google User Messaging Platform (UMP) for advertising and consent management. These services may automatically collect or share approximate location inferred from IP address, app interactions, diagnostics, device identifiers, and other identifiers for advertising or marketing, analytics, fraud prevention, security, and compliance. Data is encrypted in transit.
                 </p>
                 <p>
-                  Where required, UMP lets you make consent and privacy choices. Ads are not shown after the lifetime Premium upgrade is active.
+                  Where required, UMP lets you make consent and privacy choices. {app.adsAndroidOnly ? "The iOS version does not show ads or initialize AdMob." : "Ads are not shown after the lifetime Premium upgrade is active."}
                 </p>
               </>
             ) : (

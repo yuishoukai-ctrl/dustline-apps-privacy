@@ -11,6 +11,7 @@ export type AppInfo = {
   category: string;
   accent: "blue" | "green" | "rose";
   ads: boolean;
+  adsAndroidOnly?: boolean;
   health: boolean;
   childrenAge?: 13 | 18;
   noticeEn?: string;
@@ -136,6 +137,30 @@ export const apps: AppInfo[] = [
       name: "養蜂・巣箱点検手帳",
       summary:
         "養蜂場、巣箱、点検、タスク、リマインダー、添付資料を端末内で整理するアプリです。",
+    },
+  },
+  {
+    slug: "bichiku-checker",
+    icon: "▣",
+    category: "Emergency preparedness",
+    accent: "green",
+    ads: true,
+    adsAndroidOnly: true,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "Preparedness and first-aid content is general reference information. It is not medical advice or a substitute for current instructions from governments, emergency services, or medical professionals.",
+    noticeJa:
+      "本アプリの防災・応急処置情報は一般的な参考情報です。医療上の助言や、行政・消防・医療機関などによる最新の指示の代替ではありません。",
+    en: {
+      name: "Emergency Stock Checker",
+      summary:
+        "Manage household emergency supplies, expiration dates, family targets, reminders, backups, and reports on your device.",
+    },
+    ja: {
+      name: "備蓄チェッカー",
+      summary:
+        "家庭の防災備蓄、期限、家族構成に応じた必要量、通知、バックアップ、レポートを端末内で管理します。",
     },
   },
   {

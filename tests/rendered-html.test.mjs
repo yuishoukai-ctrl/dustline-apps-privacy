@@ -27,6 +27,7 @@ for (const app of [
   { slug: "aquarium-log", en: "Aquarium Log by DUSTLINE", ja: "Aquarium Log by DUSTLINE（水槽管理）" },
   { slug: "batch-cost", en: "Batch Cost by DUSTLINE", ja: "Batch Cost by DUSTLINE（レシピ原価計算）" },
   { slug: "bee-logbook", en: "Bee Logbook", ja: "養蜂・巣箱点検手帳" },
+  { slug: "bichiku-checker", en: "Emergency Stock Checker", ja: "備蓄チェッカー" },
   { slug: "leaselens", en: "LeaseLens", ja: "賃貸物件チェック" },
   { slug: "rigkeeper", en: "RigKeeper", ja: "RV整備記録" },
   { slug: "homeschool-binder", en: "Homeschool Binder", ja: "学習記録" },
@@ -76,6 +77,20 @@ test("states Bee Logbook photo, deletion, and beekeeper-observation boundaries",
   assert.match(ja, /カメラで撮影または写真ライブラリから選択した点検写真/);
   assert.match(ja, /本アプリをアンインストール/);
   assert.match(ja, /病気の診断/);
+});
+
+test("states Bichiku Checker inventory, iOS ad, and first-aid boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/bichiku-checker/index.html"),
+    page("ja/privacy/bichiku-checker/index.html"),
+  ]);
+
+  assert.match(en, /Inventory records you enter/);
+  assert.match(en, /iOS version does not show ads or initialize AdMob/);
+  assert.match(en, /Preparedness and first-aid content is general reference information/);
+  assert.match(ja, /備蓄品名、数量、購入日、期限/);
+  assert.match(ja, /iOS版では広告を表示せず、AdMobを起動しません/);
+  assert.match(ja, /防災・応急処置情報は一般的な参考情報/);
 });
 
 test("states the parent-managed child-data model for Homeschool Binder", async () => {
