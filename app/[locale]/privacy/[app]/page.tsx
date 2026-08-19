@@ -90,7 +90,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               {app.slug === "bee-logbook" && (
                 <ul>
                   <li>養蜂場、巣箱、点検、タスク、メモ、リマインダー</li>
-                  <li>ユーザーが選択した写真やPDF資料</li>
+                  <li>ユーザーがカメラで撮影または写真ライブラリから選択した点検写真</li>
                 </ul>
               )}
               {app.slug === "sewing-stash" && (
@@ -195,7 +195,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             <section>
               <h2>5. 保存期間と削除</h2>
               <p>
-                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{app.slug === "batch-cost" && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
+                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
               </p>
               {app.slug === "garden-diary" && (
                 <p>
@@ -293,7 +293,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             {app.slug === "bee-logbook" && (
               <ul>
                 <li>Apiaries, hive profiles, inspections, tasks, notes, and reminders</li>
-                <li>Photos and PDF documents you choose</li>
+                <li>Inspection photos you take with the camera or choose from the photo library</li>
               </ul>
             )}
             {app.slug === "sewing-stash" && (
@@ -398,7 +398,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <section>
             <h2>5. Retention and deletion</h2>
             <p>
-              Local data remains until you delete it in the app or uninstall the app. {app.slug === "batch-cost" && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
+              Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
             </p>
             {app.slug === "garden-diary" && (
               <p>
