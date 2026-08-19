@@ -42,8 +42,8 @@ export default async function SupportPage({ params }: PageProps) {
             <h2>{locale === "ja" ? "メールで問い合わせる" : "Contact by email"}</h2>
             <p>
               {locale === "ja"
-                ? "アプリ名、端末機種、Androidのバージョン、問題が発生した手順をお知らせください。機密情報や健康情報そのものは送らないでください。"
-                : "Include the app name, device model, Android version, and steps that led to the problem. Do not email sensitive data or the health-record contents themselves."}
+                ? "アプリ名、端末機種、OSのバージョン、問題が発生した手順をお知らせください。機密情報や健康情報そのものは送らないでください。"
+                : "Include the app name, device model, operating-system version, and steps that led to the problem. Do not email sensitive data or the health-record contents themselves."}
             </p>
             <a href="mailto:support@dustline.jp">support@dustline.jp</a>
           </section>
@@ -69,7 +69,7 @@ export default async function SupportPage({ params }: PageProps) {
           </details>
           <details>
             <summary>{locale === "ja" ? "プレミアム購入を復元できますか？" : "Can I restore my Premium purchase?"}</summary>
-            <p>{locale === "ja" ? "購入時と同じGoogle Playアカウントでアプリを開き、プレミアム画面の復元操作をお試しください。" : "Use the same Google Play account used for the purchase, then use the restore action on the Premium screen."}</p>
+            <p>{locale === "ja" ? "購入時と同じApple AccountまたはGoogle Playアカウントでアプリを開き、プレミアム画面の復元操作をお試しください。" : "Use the same Apple Account or Google Play account used for the purchase, then use the restore action on the Premium screen."}</p>
           </details>
           <details>
             <summary>{locale === "ja" ? "アプリを削除すると記録はどうなりますか？" : "What happens if I uninstall the app?"}</summary>
@@ -77,7 +77,7 @@ export default async function SupportPage({ params }: PageProps) {
           </details>
           <details>
             <summary>{locale === "ja" ? "返金はどこで申請しますか？" : "Where do I request a refund?"}</summary>
-            <p>{locale === "ja" ? "購入はGoogle Playが処理します。返金申請はGoogle Playの購入履歴またはサポートから行ってください。" : "Google Play processes purchases. Request a refund through your Google Play purchase history or Google Play support."}</p>
+            <p>{locale === "ja" ? "購入はAppleのApp StoreまたはGoogle Playが処理します。返金申請は、利用したストアの購入履歴またはサポートから行ってください。" : "Apple&apos;s App Store or Google Play processes purchases. Request a refund through the purchase history or support for the store you used."}</p>
           </details>
         </section>
       </div>

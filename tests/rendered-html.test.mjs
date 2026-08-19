@@ -23,6 +23,7 @@ test("exports the app directory without starter metadata", async () => {
 });
 
 for (const app of [
+  { slug: "aquarium-log", en: "Aquarium Log by DUSTLINE", ja: "Aquarium Log by DUSTLINE（水槽管理）" },
   { slug: "leaselens", en: "LeaseLens", ja: "賃貸物件チェック" },
   { slug: "rigkeeper", en: "RigKeeper", ja: "RV整備記録" },
   { slug: "homeschool-binder", en: "Homeschool Binder", ja: "学習記録" },
@@ -38,10 +39,10 @@ for (const app of [
     ]);
 
     assert.match(en, new RegExp(app.en));
-    assert.match(en, /Google Play Billing/);
+    assert.match(en, /App Store \(StoreKit\).*Google Play Billing/);
     assert.match(en, /support@dustline\.jp/);
     assert.match(ja, new RegExp(app.ja));
-    assert.match(ja, /Google Play Billing/);
+    assert.match(ja, /App Store（StoreKit）.*Google Play Billing/);
     assert.match(ja, /support@dustline\.jp/);
   });
 }

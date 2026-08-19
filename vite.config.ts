@@ -48,7 +48,15 @@ export default defineConfig(async () => {
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
     plugins: [
-      vinext(),
+      vinext({
+        // The public GitHub Pages export uses next.config.ts. Sites serves the
+        // same routes at the domain root and therefore must not inherit the
+        // GitHub-only base path or static-export mode.
+        nextConfig: {
+          trailingSlash: true,
+          images: { unoptimized: true },
+        },
+      }),
       sites(),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },

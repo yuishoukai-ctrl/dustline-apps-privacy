@@ -76,7 +76,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               {app.slug === "aquarium-log" && (
                 <ul>
                   <li>水槽情報、水質測定値、生体の観察、飼育・メンテナンス記録、メモ、リマインダー</li>
-                  <li>ユーザーが選択した写真やPDF資料</li>
+                  <li>ユーザーがカメラで撮影または写真ライブラリから選択した写真</li>
                 </ul>
               )}
               {app.slug === "bee-logbook" && (
@@ -175,7 +175,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>本アプリは広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません。</p>
               )}
               <p>
-                買い切りプレミアムの購入処理にはGoogle Play Billingを使用します。支払い情報はGoogleが処理し、本アプリや開発者は完全な決済情報を取得しません。
+                買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
               </p>
             </section>
             <section>
@@ -187,7 +187,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             <section>
               <h2>5. 保存期間と削除</h2>
               <p>
-                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。Googleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}にはGoogleの保存方針が適用されます。
+                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
               </p>
               {app.slug === "garden-diary" && (
                 <p>
@@ -271,7 +271,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             {app.slug === "aquarium-log" && (
               <ul>
                 <li>Tank profiles, water readings, livestock observations, care and maintenance records, notes, and reminders</li>
-                <li>Photos and PDF documents you choose</li>
+                <li>Photos you take with the camera or choose from the photo library</li>
               </ul>
             )}
             {app.slug === "bee-logbook" && (
@@ -370,7 +370,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>The app does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service.</p>
             )}
             <p>
-              The optional lifetime Premium purchase is processed by Google Play Billing. Google processes payment information; the app and developer do not receive your complete payment details.
+              The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
             </p>
           </section>
           <section>
@@ -382,7 +382,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <section>
             <h2>5. Retention and deletion</h2>
             <p>
-              Local data remains until you delete it in the app or uninstall the app. You must separately delete exported files or copies held by a sharing destination. Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} it processes.
+              Local data remains until you delete it in the app or uninstall the app. You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
             </p>
             {app.slug === "garden-diary" && (
               <p>

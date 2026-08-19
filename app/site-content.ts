@@ -83,12 +83,12 @@ export const apps: AppInfo[] = [
     noticeJa:
       "本アプリは入力された観察記録を管理するもので、生体の診断、治療助言、水の安全判定を行いません。",
     en: {
-      name: "Aquarium Log",
+      name: "Aquarium Log by DUSTLINE",
       summary:
         "Organize tank profiles, water readings, care notes, reminders, and attachments on your device.",
     },
     ja: {
-      name: "水槽管理・アクアリウムログ",
+      name: "Aquarium Log by DUSTLINE（水槽管理）",
       summary:
         "水槽情報、水質測定、飼育記録、リマインダー、添付資料を端末内で整理するアプリです。",
     },
@@ -323,8 +323,8 @@ export const apps: AppInfo[] = [
   },
 ];
 
-export const updatedDate = "August 13, 2026";
-export const updatedDateJa = "2026年8月13日";
+export const updatedDate = "August 18, 2026";
+export const updatedDateJa = "2026年8月18日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);
