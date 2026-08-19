@@ -94,6 +94,29 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "batch-cost",
+    icon: "∑",
+    category: "Recipe costing",
+    accent: "rose",
+    ads: false,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "This app performs arithmetic using values entered by the user. It does not provide tax, accounting, pricing, food-safety, or nutrition advice.",
+    noticeJa:
+      "本アプリはユーザーの入力値を用いた算術計算を行うもので、税務・会計・価格設定・食品衛生・栄養に関する助言を提供しません。",
+    en: {
+      name: "Batch Cost by DUSTLINE",
+      summary:
+        "Calculate ingredient, batch, and per-unit recipe costs while keeping prices and recipes on your device.",
+    },
+    ja: {
+      name: "Batch Cost by DUSTLINE（レシピ原価計算）",
+      summary:
+        "材料単価、仕込み原価、1個あたりの原価を計算し、価格とレシピを端末内で管理します。",
+    },
+  },
+  {
     slug: "bee-logbook",
     icon: "⬡",
     category: "Apiary records",
@@ -323,8 +346,8 @@ export const apps: AppInfo[] = [
   },
 ];
 
-export const updatedDate = "August 18, 2026";
-export const updatedDateJa = "2026年8月18日";
+export const updatedDate = "August 19, 2026";
+export const updatedDateJa = "2026年8月19日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);
