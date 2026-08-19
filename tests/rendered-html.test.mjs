@@ -26,6 +26,7 @@ test("exports the app directory without starter metadata", async () => {
 for (const app of [
   { slug: "aquarium-log", en: "Aquarium Log by DUSTLINE", ja: "Aquarium Log by DUSTLINE（水槽管理）" },
   { slug: "batch-cost", en: "Batch Cost by DUSTLINE", ja: "Batch Cost by DUSTLINE（レシピ原価計算）" },
+  { slug: "bee-logbook", en: "Bee Logbook", ja: "養蜂・巣箱点検手帳" },
   { slug: "leaselens", en: "LeaseLens", ja: "賃貸物件チェック" },
   { slug: "rigkeeper", en: "RigKeeper", ja: "RV整備記録" },
   { slug: "homeschool-binder", en: "Homeschool Binder", ja: "学習記録" },
@@ -61,6 +62,20 @@ test("states Batch Cost local-data and calculation boundaries", async () => {
   assert.match(ja, /材料名、購入量、購入価格、単位/);
   assert.match(ja, /税務・会計・価格設定・食品衛生・栄養/);
   assert.match(ja, /本アプリをアンインストール/);
+});
+
+test("states Bee Logbook photo, deletion, and beekeeper-observation boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/bee-logbook/index.html"),
+    page("ja/privacy/bee-logbook/index.html"),
+  ]);
+
+  assert.match(en, /Inspection photos you take with the camera or choose from the photo library/);
+  assert.match(en, /uninstall the app to remove all of its records/);
+  assert.match(en, /does not diagnose disease/);
+  assert.match(ja, /カメラで撮影または写真ライブラリから選択した点検写真/);
+  assert.match(ja, /本アプリをアンインストール/);
+  assert.match(ja, /病気の診断/);
 });
 
 test("states the parent-managed child-data model for Homeschool Binder", async () => {
