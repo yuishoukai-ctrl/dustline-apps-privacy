@@ -24,6 +24,8 @@ test("exports the app directory without starter metadata", async () => {
 });
 
 for (const app of [
+  { slug: "kyou-no-mikata", en: "Your Ally Today", ja: "今日のミカタ", billing: false },
+  { slug: "moving-checklist", en: "Moving Checklist", ja: "引越しチェックリスト" },
   { slug: "aquarium-log", en: "Aquarium Log by DUSTLINE", ja: "Aquarium Log by DUSTLINE（水槽管理）" },
   { slug: "batch-cost", en: "Batch Cost by DUSTLINE", ja: "Batch Cost by DUSTLINE（レシピ原価計算）" },
   { slug: "bee-logbook", en: "Bee Logbook", ja: "養蜂・巣箱点検手帳" },
@@ -43,13 +45,52 @@ for (const app of [
     ]);
 
     assert.match(en, new RegExp(app.en));
-    assert.match(en, /App Store \(StoreKit\).*Google Play Billing/);
+    if (app.billing === false) {
+      assert.doesNotMatch(en, /App Store \(StoreKit\).*Google Play Billing/);
+    } else {
+      assert.match(en, /App Store \(StoreKit\).*Google Play Billing/);
+    }
     assert.match(en, /support@dustline\.jp/);
     assert.match(ja, new RegExp(app.ja));
-    assert.match(ja, /App Store（StoreKit）.*Google Play Billing/);
+    if (app.billing === false) {
+      assert.doesNotMatch(ja, /App Store（StoreKit）.*Google Play Billing/);
+    } else {
+      assert.match(ja, /App Store（StoreKit）.*Google Play Billing/);
+    }
     assert.match(ja, /support@dustline\.jp/);
   });
 }
+
+test("states Your Ally Today no-retention, no-SDK, and wellbeing boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/kyou-no-mikata/index.html"),
+    page("ja/privacy/kyou-no-mikata/index.html"),
+  ]);
+
+  assert.match(en, /does not save what you enter or the response it generates/);
+  assert.match(en, /does not record audio or access the microphone/);
+  assert.match(en, /no feature that exports or shares your entries or responses/);
+  assert.match(en, /does not provide medical care, diagnosis, treatment, or emergency support/);
+  assert.doesNotMatch(en, /advertising SDK.*Premium purchase/s);
+  assert.match(ja, /入力した内容や生成された回答は保存せず/);
+  assert.match(ja, /録音やマイクへのアクセスは行いません/);
+  assert.match(ja, /入力内容や回答を開発者または第三者へエクスポート・共有する機能はありません/);
+  assert.match(ja, /医療行為、診断、治療、緊急対応を提供しません/);
+});
+
+test("states Moving Checklist local-data, advertising, and official-source boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/moving-checklist/index.html"),
+    page("ja/privacy/moving-checklist/index.html"),
+  ]);
+
+  assert.match(en, /Move name, planned date, household details, checklist items/);
+  assert.match(en, /Google Mobile Ads SDK \(AdMob\)/);
+  assert.match(en, /Confirm current requirements with the relevant authority or service provider/);
+  assert.match(ja, /引越し名、予定日、世帯情報、チェック項目/);
+  assert.match(ja, /Google Mobile Ads SDK（AdMob）/);
+  assert.match(ja, /最新の要件を関係機関またはサービス提供者へ確認/);
+});
 
 test("states Batch Cost local-data and calculation boundaries", async () => {
   const [en, ja] = await Promise.all([

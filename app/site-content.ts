@@ -12,6 +12,8 @@ export type AppInfo = {
   accent: "blue" | "green" | "rose";
   ads: boolean;
   adsAndroidOnly?: boolean;
+  billing?: boolean;
+  exporting?: boolean;
   health: boolean;
   childrenAge?: 13 | 18;
   noticeEn?: string;
@@ -21,6 +23,54 @@ export type AppInfo = {
 };
 
 export const apps: AppInfo[] = [
+  {
+    slug: "kyou-no-mikata",
+    icon: "☀",
+    category: "Wellbeing support",
+    accent: "rose",
+    ads: false,
+    billing: false,
+    exporting: false,
+    health: false,
+    childrenAge: 18,
+    noticeEn:
+      "This app offers general encouragement. It does not provide medical care, diagnosis, treatment, or emergency support. In an emergency, contact local emergency services or a qualified professional.",
+    noticeJa:
+      "本アプリは一般的な励ましを提供するもので、医療行為、診断、治療、緊急対応を提供しません。緊急時は地域の緊急窓口や専門家へ連絡してください。",
+    en: {
+      name: "Your Ally Today",
+      summary:
+        "Receive gentle encouragement without sending or saving what you enter.",
+    },
+    ja: {
+      name: "今日のミカタ",
+      summary:
+        "入力内容を送信・保存せず、その場でやさしい励ましを受け取れるアプリです。",
+    },
+  },
+  {
+    slug: "moving-checklist",
+    icon: "⌂",
+    category: "Moving preparation",
+    accent: "blue",
+    ads: true,
+    health: false,
+    childrenAge: 13,
+    noticeEn:
+      "This app is an organizational checklist. Administrative procedures, required documents, fees, and deadlines vary by location and individual circumstances. Confirm current requirements with the relevant authority or service provider.",
+    noticeJa:
+      "本アプリは手続きの整理を補助するチェックリストです。必要な手続き、書類、費用、期限は地域や個別事情により異なるため、最新の要件を関係機関またはサービス提供者へ確認してください。",
+    en: {
+      name: "Moving Checklist",
+      summary:
+        "Organize moving tasks, deadlines, household details, and reminders on your device.",
+    },
+    ja: {
+      name: "引越しチェックリスト",
+      summary:
+        "引越しの手続き、期限、世帯情報、リマインダーを端末内で整理するアプリです。",
+    },
+  },
   {
     slug: "noise-diary",
     icon: "◉",
@@ -371,8 +421,8 @@ export const apps: AppInfo[] = [
   },
 ];
 
-export const updatedDate = "August 19, 2026";
-export const updatedDateJa = "2026年8月19日";
+export const updatedDate = "August 24, 2026";
+export const updatedDateJa = "2026年8月24日";
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);

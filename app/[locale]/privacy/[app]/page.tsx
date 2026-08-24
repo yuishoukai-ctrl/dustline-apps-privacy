@@ -48,7 +48,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             <section>
               <h2>1. 基本方針</h2>
               <p>
-                Dustline Apps（以下「開発者」）は、{t.name}（以下「本アプリ」）で扱う情報を必要最小限とし、ユーザーが入力した記録を原則としてユーザーの端末内に保存します。本アプリの利用にアカウント登録は不要です。
+                Dustline Apps（以下「開発者」）は、{t.name}（以下「本アプリ」）で扱う情報を必要最小限とします。{app.slug === "kyou-no-mikata" ? "ユーザーが入力した内容や生成された回答は保存せず、選択した言語設定だけを端末内に保存します。" : "ユーザーが入力した記録は原則としてユーザーの端末内に保存します。"}本アプリの利用にアカウント登録は不要です。
               </p>
             </section>
             <section>
@@ -58,6 +58,20 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>マイクを使用して取得する周囲の音量レベル</li>
                   <li>ユーザーが入力する騒音記録、メモ、日時など</li>
                   <li>測定中の音声そのものは録音、保存、送信しません。</li>
+                </ul>
+              )}
+              {app.slug === "kyou-no-mikata" && (
+                <ul>
+                  <li>回答を端末内で生成するため、その場で入力する気持ちや言葉</li>
+                  <li>端末内に保存する日本語・英語の言語設定</li>
+                  <li>端末の音声合成サービスを使う読み上げ設定（録音やマイクへのアクセスは行いません）</li>
+                </ul>
+              )}
+              {app.slug === "moving-checklist" && (
+                <ul>
+                  <li>引越し名、予定日、世帯情報、チェック項目、完了状況、メモ</li>
+                  <li>ユーザーが明示的に有効化したリマインダーと通知設定</li>
+                  <li>言語、広告同意、端末内のプレミアム利用状態などの設定</li>
                 </ul>
               )}
               {app.slug === "garden-diary" && (
@@ -170,7 +184,11 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>通知、言語、プレミアム利用状態などの設定</li>
                 </ul>
               )}
-              <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
+              {app.slug === "kyou-no-mikata" ? (
+                <p>入力内容と回答は履歴として保存されず、開発者が運営するサーバーへ送信されません。言語設定だけが端末内に保存されます。</p>
+              ) : (
+                <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
+              )}
               {app.slug === "try-clock" && (
                 <p>Androidのバックアップを有効にしている場合、端末設定に従ってアプリのローカルデータがGoogleアカウントへバックアップされる場合があります。</p>
               )}
@@ -189,21 +207,34 @@ export default async function PrivacyPage({ params }: PageProps) {
               ) : (
                 <p>本アプリは広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません。</p>
               )}
-              <p>
-                買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
-              </p>
+              {app.slug === "kyou-no-mikata" && (
+                <p>読み上げには端末の音声合成サービスを使用します。その処理は端末設定とサービス提供元の方針に従います。</p>
+              )}
+              {app.billing !== false && (
+                <p>
+                  買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
+                </p>
+              )}
             </section>
             <section>
               <h2>4. 共有・エクスポート</h2>
-              <p>
-                ユーザーがエクスポートまたは共有操作を実行した場合に限り、選択した情報がOSの共有機能を通じてユーザー指定先へ渡されます。保存先や共有先での取り扱いは、当該サービスの方針に従います。
-              </p>
+              {app.exporting === false ? (
+                <p>本アプリには、入力内容や回答を開発者または第三者へエクスポート・共有する機能はありません。</p>
+              ) : (
+                <p>
+                  ユーザーがエクスポートまたは共有操作を実行した場合に限り、選択した情報がOSの共有機能を通じてユーザー指定先へ渡されます。保存先や共有先での取り扱いは、当該サービスの方針に従います。
+                </p>
+              )}
             </section>
             <section>
               <h2>5. 保存期間と削除</h2>
-              <p>
-                端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
-              </p>
+              {app.slug === "kyou-no-mikata" ? (
+                <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
+              ) : (
+                <p>
+                  端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
+                </p>
+              )}
               {app.slug === "garden-diary" && (
                 <p>
                   本アプリの設定画面で「すべての記録を削除」を選択すると、菜園、植物、タスク、記録、収穫、保存写真を端末から削除できます。この操作は元に戻せません。広告・購入関連データはGoogleが処理するため、Googleの保存・削除方針が適用されます。
@@ -258,7 +289,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <section>
             <h2>1. Our approach</h2>
             <p>
-              Dustline Apps (“we,” “us,” or the “developer”) limits the information handled by {t.name} (“the app”) to what its features need. Records you enter are generally stored locally on your device. No account is required.
+              Dustline Apps (“we,” “us,” or the “developer”) limits the information handled by {t.name} (“the app”) to what its features need. {app.slug === "kyou-no-mikata" ? "The app does not save what you enter or the response it generates; only your selected language preference is stored locally on your device." : "Records you enter are generally stored locally on your device."} No account is required.
             </p>
           </section>
           <section>
@@ -268,6 +299,20 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Surrounding sound-level measurements obtained using the microphone</li>
                 <li>Noise records, notes, dates, and other details you enter</li>
                 <li>The app does not record, store, or transmit raw audio.</li>
+              </ul>
+            )}
+            {app.slug === "kyou-no-mikata" && (
+              <ul>
+                <li>Feelings or words you enter to generate an on-device response for the current session</li>
+                <li>Your Japanese or English language preference, stored locally on your device</li>
+                <li>Read-aloud using your device&apos;s text-to-speech service; the app does not record audio or access the microphone</li>
+              </ul>
+            )}
+            {app.slug === "moving-checklist" && (
+              <ul>
+                <li>Move name, planned date, household details, checklist items, completion status, and notes</li>
+                <li>Reminders and notification settings you explicitly enable</li>
+                <li>Language, advertising consent, and local Premium entitlement settings</li>
               </ul>
             )}
             {app.slug === "garden-diary" && (
@@ -380,7 +425,11 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Notification, language, and local Premium entitlement settings</li>
               </ul>
             )}
-            <p>These records stay on your device and are not sent to a server operated by the developer.</p>
+            {app.slug === "kyou-no-mikata" ? (
+              <p>Your entries and responses are not saved as history or sent to a server operated by the developer. Only the language preference stays on your device.</p>
+            ) : (
+              <p>These records stay on your device and are not sent to a server operated by the developer.</p>
+            )}
             {app.slug === "try-clock" && (
               <p>If Android device backup is enabled, Android may back up the local app database under your Google account settings.</p>
             )}
@@ -399,21 +448,34 @@ export default async function PrivacyPage({ params }: PageProps) {
             ) : (
               <p>The app does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service.</p>
             )}
-            <p>
-              The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
-            </p>
+            {app.slug === "kyou-no-mikata" && (
+              <p>Read-aloud uses your device&apos;s text-to-speech service. Its processing follows your device settings and the service provider&apos;s policy.</p>
+            )}
+            {app.billing !== false && (
+              <p>
+                The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
+              </p>
+            )}
           </section>
           <section>
             <h2>4. Sharing and export</h2>
-            <p>
-              Only when you start an export or share action does selected information pass through the operating system&apos;s share interface to a destination you choose. The destination&apos;s own policy governs its copy.
-            </p>
+            {app.exporting === false ? (
+              <p>The app has no feature that exports or shares your entries or responses with the developer or another party.</p>
+            ) : (
+              <p>
+                Only when you start an export or share action does selected information pass through the operating system&apos;s share interface to a destination you choose. The destination&apos;s own policy governs its copy.
+              </p>
+            )}
           </section>
           <section>
             <h2>5. Retention and deletion</h2>
-            <p>
-              Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
-            </p>
+            {app.slug === "kyou-no-mikata" ? (
+              <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
+            ) : (
+              <p>
+                Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
+              </p>
+            )}
             {app.slug === "garden-diary" && (
               <p>
                 In the app, open Settings and choose Delete all records to remove gardens, plants, tasks, logs, harvests, and saved photos from your device. This cannot be undone. Google processes advertising and purchase data, so Google&apos;s retention and deletion policies apply to that data.
