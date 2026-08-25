@@ -39,6 +39,7 @@ for (const app of [
   { slug: "boothworth", en: "BoothWorth", ja: "クラフトフェア計画" },
   { slug: "roasttrace", en: "RoastTrace", ja: "コーヒー焙煎ログ" },
   { slug: "flockledger", en: "FlockLedger", ja: "FlockLedger 鶏・採卵・費用台帳" },
+  { slug: "engine-note", en: "Engine Note", ja: "Engine Note", billing: false },
 ]) {
   test(`exports English and Japanese privacy pages for ${app.slug}`, async () => {
     const [en, ja] = await Promise.all([
@@ -241,4 +242,24 @@ test("states app-specific safety and business boundaries for the next three apps
   assert.match(boothJa, /決済処理、会計・税務/);
   assert.match(roastEn, /Timers and notifications are not safety devices/);
   assert.match(roastJa, /タイマーや通知は安全装置ではありません/);
+});
+
+test("states Engine Note local-only service data, explicit sharing, and iOS StoreKit boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/engine-note/index.html"),
+    page("ja/privacy/engine-note/index.html"),
+  ]);
+
+  assert.match(en, /Equipment name, type, manufacturer, model, serial number, current hours/);
+  assert.match(en, /CSV or PDF exports and JSON backups you explicitly create/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+  assert.match(en, /does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service/);
+  assert.match(en, /does not collect or transmit information for advertising, analytics, or tracking/);
+  assert.match(ja, /機器名、種類、メーカー、型式、製造番号、現在の稼働時間/);
+  assert.match(ja, /CSV・PDF書き出しおよびJSONバックアップ/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+  assert.match(ja, /広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません/);
+  assert.match(ja, /広告、分析、トラッキングを目的として情報を収集または送信しません/);
 });

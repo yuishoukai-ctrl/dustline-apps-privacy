@@ -134,6 +134,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが作成したPDF・CSVレポートおよびJSONバックアップ</li>
                 </ul>
               )}
+              {app.slug === "engine-note" && (
+                <ul>
+                  <li>機器名、種類、メーカー、型式、製造番号、現在の稼働時間、メモなどの機器情報</li>
+                  <li>整備名、日付、稼働時間、部品、オイル仕様・量、費用、通貨、メモ、次回日付・稼働時間などの整備記録</li>
+                  <li>カメラで撮影または写真ライブラリから選択した機器写真、ユーザーが設定した日付ベースのリマインダー、言語設定、端末内のPro利用状態</li>
+                  <li>ユーザーが明示的に作成したCSV・PDF書き出しおよびJSONバックアップ</li>
+                </ul>
+              )}
               {app.slug === "homeschool-binder" && (
                 <ul>
                   <li>保護者が入力する生徒の名前、出席、科目、学習内容、時間、メモなどの教育記録</li>
@@ -230,11 +238,14 @@ export default async function PrivacyPage({ params }: PageProps) {
               ) : (
                 <p>本アプリは広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません。</p>
               )}
+              {app.slug === "engine-note" && (
+                <p>本アプリは広告、分析、トラッキングを目的として情報を収集または送信しません。</p>
+              )}
               {app.slug === "kyou-no-mikata" && (
                 <p>読み上げには端末の音声合成サービスを使用します。その処理は端末設定とサービス提供元の方針に従います。</p>
               )}
-              {app.billing !== false && (
-                app.slug === "zanurami" ? (
+              {(app.billing !== false || app.iosStoreKitOnly) && (
+                app.slug === "zanurami" || app.slug === "engine-note" ? (
                   <p>
                     任意の買い切りPro購入はAppleのApp Store（StoreKit）が処理します。支払い情報はAppleが処理し、本アプリや開発者は完全な決済情報を取得しません。
                   </p>
@@ -268,7 +279,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
               ) : (
                 <p>
-                  端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。{app.slug === "zanurami" ? "Appleが処理する購入関連データには、App Storeの保存方針が適用されます。" : `AppleまたはGoogleが処理する${app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。`}
+                  端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。{app.slug === "zanurami" || app.slug === "engine-note" ? "Appleが処理する購入関連データには、App Storeの保存方針が適用されます。" : `AppleまたはGoogleが処理する${app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。`}
                 </p>
               )}
               {app.slug === "garden-diary" && (
@@ -414,6 +425,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>PDF and CSV reports and JSON backups you create</li>
               </ul>
             )}
+            {app.slug === "engine-note" && (
+              <ul>
+                <li>Equipment name, type, manufacturer, model, serial number, current hours, notes, and other equipment details you enter</li>
+                <li>Service label, date, hours, parts, oil specification and quantity, cost, currency, notes, and next date or hours that you enter</li>
+                <li>Equipment photos you take with the camera or choose from the photo library, date-based reminders you set, language preference, and a local Pro-entitlement cache</li>
+                <li>CSV or PDF exports and JSON backups you explicitly create</li>
+              </ul>
+            )}
             {app.slug === "homeschool-binder" && (
               <ul>
                 <li>Student name, attendance, subject, learning activity, duration, notes, and other education records entered by a parent or adult educator</li>
@@ -510,11 +529,14 @@ export default async function PrivacyPage({ params }: PageProps) {
             ) : (
               <p>The app does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service.</p>
             )}
+            {app.slug === "engine-note" && (
+              <p>The app does not collect or transmit information for advertising, analytics, or tracking.</p>
+            )}
             {app.slug === "kyou-no-mikata" && (
               <p>Read-aloud uses your device&apos;s text-to-speech service. Its processing follows your device settings and the service provider&apos;s policy.</p>
             )}
-            {app.billing !== false && (
-              app.slug === "zanurami" ? (
+            {(app.billing !== false || app.iosStoreKitOnly) && (
+              app.slug === "zanurami" || app.slug === "engine-note" ? (
                 <p>
                   The optional lifetime Pro purchase is processed by Apple&apos;s App Store (StoreKit). Apple processes payment information; the app and developer do not receive your complete payment details.
                 </p>
@@ -548,7 +570,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
             ) : (
               <p>
-                Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. {app.slug === "zanurami" ? "Apple's App Store retention policy applies to purchase data processed by Apple." : `Apple's or Google's retention policies apply to ${app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.`}
+                Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. {app.slug === "zanurami" || app.slug === "engine-note" ? "Apple's App Store retention policy applies to purchase data processed by Apple." : `Apple's or Google's retention policies apply to ${app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.`}
               </p>
             )}
             {app.slug === "garden-diary" && (
