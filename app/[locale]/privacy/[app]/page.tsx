@@ -48,7 +48,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             <section>
               <h2>1. 基本方針</h2>
               <p>
-                Dustline Apps（以下「開発者」）は、{t.name}（以下「本アプリ」）で扱う情報を必要最小限とします。{app.slug === "kyou-no-mikata" ? "ユーザーが入力した内容や生成された回答は保存せず、選択した言語設定だけを端末内に保存します。" : "ユーザーが入力した記録は原則としてユーザーの端末内に保存します。"}本アプリの利用にアカウント登録は不要です。
+                Dustline Apps（以下「開発者」）は、{t.name}（以下「本アプリ」）で扱う情報を必要最小限とします。{app.slug === "kyou-no-mikata" ? "ユーザーが入力した内容や生成された回答は保存せず、選択した言語設定だけを端末内に保存します。" : app.slug === "calibrqr" ? "入力または読み込んだラベル文字列とQR内容は作業中のメモリ上だけで処理し、履歴として保存しません。テンプレート名、用紙寸法、余白、間隔、印刷補正値、端末内のPro利用状態だけを端末内に保存する場合があります。" : "ユーザーが入力した記録は原則としてユーザーの端末内に保存します。"}本アプリの利用にアカウント登録は不要です。
               </p>
             </section>
             <section>
@@ -142,6 +142,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>ユーザーが明示的に作成したCSV・PDF書き出しおよびJSONバックアップ</li>
                 </ul>
               )}
+              {app.slug === "calibrqr" && (
+                <ul>
+                  <li>ユーザーが貼り付ける、またはCSV・TXT・TSVファイルから読み込むラベル文字列と静的QR内容</li>
+                  <li>端末内に保存するテンプレート名、用紙サイズ、行列数、余白、間隔、X・Y印刷補正値</li>
+                  <li>端末内のPro利用状態、およびユーザーが明示的に作成するQRラベルPDF</li>
+                  <li>読み込んだラベル文字列とQR内容は履歴やテンプレートには保存しません。</li>
+                </ul>
+              )}
               {app.slug === "homeschool-binder" && (
                 <ul>
                   <li>保護者が入力する生徒の名前、出席、科目、学習内容、時間、メモなどの教育記録</li>
@@ -211,6 +219,8 @@ export default async function PrivacyPage({ params }: PageProps) {
               )}
               {app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は履歴として保存されず、開発者が運営するサーバーへ送信されません。言語設定だけが端末内に保存されます。</p>
+              ) : app.slug === "calibrqr" ? (
+                <p>ラベル文字列とQR内容は現在の作業中だけ端末上で処理され、開発者が運営するサーバーへ送信されません。</p>
               ) : (
                 <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
               )}
@@ -245,7 +255,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>読み上げには端末の音声合成サービスを使用します。その処理は端末設定とサービス提供元の方針に従います。</p>
               )}
               {(app.billing !== false || app.iosStoreKitOnly) && (
-                app.slug === "zanurami" || app.slug === "engine-note" ? (
+                app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" ? (
                   <p>
                     任意の買い切りPro購入はAppleのApp Store（StoreKit）が処理します。支払い情報はAppleが処理し、本アプリや開発者は完全な決済情報を取得しません。
                   </p>
@@ -275,7 +285,9 @@ export default async function PrivacyPage({ params }: PageProps) {
             </section>
             <section>
               <h2>5. 保存期間と削除</h2>
-              {app.slug === "kyou-no-mikata" ? (
+              {app.slug === "calibrqr" ? (
+                <p>ラベル文字列とQR内容は現在の作業中だけ保持され、アプリを終了すると履歴として残りません。保存した用紙テンプレートと端末内のPro利用状態は、アプリをアンインストールすると削除されます。アプリ外へ保存したPDFや共有先の複製は、各保存先でユーザーが削除する必要があります。Appleが処理する購入関連データには、App Storeの保存方針が適用されます。</p>
+              ) : app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
               ) : (
                 <p>
@@ -339,7 +351,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <section>
             <h2>1. Our approach</h2>
             <p>
-              Dustline Apps (“we,” “us,” or the “developer”) limits the information handled by {t.name} (“the app”) to what its features need. {app.slug === "kyou-no-mikata" ? "The app does not save what you enter or the response it generates; only your selected language preference is stored locally on your device." : "Records you enter are generally stored locally on your device."} No account is required.
+              Dustline Apps (“we,” “us,” or the “developer”) limits the information handled by {t.name} (“the app”) to what its features need. {app.slug === "kyou-no-mikata" ? "The app does not save what you enter or the response it generates; only your selected language preference is stored locally on your device." : app.slug === "calibrqr" ? "Label text and QR payloads that you enter or import are processed only in working memory and are not saved as history. The app may store template names, paper geometry, spacing, print offsets, and a local Pro-entitlement state on your device." : "Records you enter are generally stored locally on your device."} No account is required.
             </p>
           </section>
           <section>
@@ -433,6 +445,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>CSV or PDF exports and JSON backups you explicitly create</li>
               </ul>
             )}
+            {app.slug === "calibrqr" && (
+              <ul>
+                <li>Label text and static QR payloads that you paste or import from CSV, TXT, or TSV files</li>
+                <li>Template name, paper size, grid dimensions, margins, gaps, and X/Y print offsets stored locally on your device</li>
+                <li>A local Pro-entitlement state and QR label PDFs that you explicitly create</li>
+                <li>The app does not save imported label text or QR payloads in history or templates.</li>
+              </ul>
+            )}
             {app.slug === "homeschool-binder" && (
               <ul>
                 <li>Student name, attendance, subject, learning activity, duration, notes, and other education records entered by a parent or adult educator</li>
@@ -502,6 +522,8 @@ export default async function PrivacyPage({ params }: PageProps) {
             )}
             {app.slug === "kyou-no-mikata" ? (
               <p>Your entries and responses are not saved as history or sent to a server operated by the developer. Only the language preference stays on your device.</p>
+            ) : app.slug === "calibrqr" ? (
+              <p>Label text and QR payloads are processed on your device only for the current working session and are not sent to a server operated by the developer.</p>
             ) : (
               <p>These records stay on your device and are not sent to a server operated by the developer.</p>
             )}
@@ -536,7 +558,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Read-aloud uses your device&apos;s text-to-speech service. Its processing follows your device settings and the service provider&apos;s policy.</p>
             )}
             {(app.billing !== false || app.iosStoreKitOnly) && (
-              app.slug === "zanurami" || app.slug === "engine-note" ? (
+              app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" ? (
                 <p>
                   The optional lifetime Pro purchase is processed by Apple&apos;s App Store (StoreKit). Apple processes payment information; the app and developer do not receive your complete payment details.
                 </p>
@@ -566,7 +588,9 @@ export default async function PrivacyPage({ params }: PageProps) {
           </section>
           <section>
             <h2>5. Retention and deletion</h2>
-            {app.slug === "kyou-no-mikata" ? (
+            {app.slug === "calibrqr" ? (
+              <p>Label text and QR payloads remain only for the current working session and are not retained as history after the app closes. Uninstalling the app deletes saved paper templates and the local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
+            ) : app.slug === "kyou-no-mikata" ? (
               <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
             ) : (
               <p>

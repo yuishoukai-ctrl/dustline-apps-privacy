@@ -22,6 +22,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /Batch Cost by DUSTLINE/);
   assert.match(html, /Zanurami/);
   assert.match(html, /ToolLife Pocket/);
+  assert.match(html, /CalibrQR/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -40,6 +41,7 @@ for (const app of [
   { slug: "roasttrace", en: "RoastTrace", ja: "コーヒー焙煎ログ" },
   { slug: "flockledger", en: "FlockLedger", ja: "FlockLedger 鶏・採卵・費用台帳" },
   { slug: "engine-note", en: "Engine Note", ja: "Engine Note", billing: false },
+  { slug: "calibrqr", en: "CalibrQR", ja: "CalibrQR", billing: false },
 ]) {
   test(`exports English and Japanese privacy pages for ${app.slug}`, async () => {
     const [en, ja] = await Promise.all([
@@ -262,4 +264,24 @@ test("states Engine Note local-only service data, explicit sharing, and iOS Stor
   assert.doesNotMatch(ja, /Google Play Billing/);
   assert.match(ja, /広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません/);
   assert.match(ja, /広告、分析、トラッキングを目的として情報を収集または送信しません/);
+});
+
+test("states CalibrQR memory-only label handling, explicit PDF sharing, and iOS StoreKit boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/calibrqr/index.html"),
+    page("ja/privacy/calibrqr/index.html"),
+  ]);
+
+  assert.match(en, /Label text and static QR payloads/);
+  assert.match(en, /processed only in working memory and are not saved as history/);
+  assert.match(en, /does not save imported label text or QR payloads in history or templates/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+  assert.match(en, /Only when you start an export or share action/);
+  assert.match(ja, /ラベル文字列と静的QR内容/);
+  assert.match(ja, /作業中のメモリ上だけで処理し、履歴として保存しません/);
+  assert.match(ja, /読み込んだラベル文字列とQR内容は履歴やテンプレートには保存しません/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+  assert.match(ja, /エクスポートまたは共有操作を実行した場合に限り/);
 });

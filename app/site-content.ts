@@ -329,6 +329,34 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "calibrqr",
+    icon: "⌗",
+    category: "QR label printing",
+    accent: "green",
+    ads: false,
+    billing: false,
+    iosStoreKitOnly: true,
+    exporting: true,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 25, 2026",
+    updatedDateJa: "2026年8月25日",
+    noticeEn:
+      "CalibrQR creates static QR label sheets from text supplied by the user. It does not provide dynamic redirects, scan tracking, inventory management, or printer certification.",
+    noticeJa:
+      "CalibrQRは、ユーザーが入力した文字列から静的QRラベルシートを作成します。動的リダイレクト、読み取り追跡、在庫管理、プリンターの適合保証は提供しません。",
+    en: {
+      name: "CalibrQR",
+      summary:
+        "Turn pasted rows or CSV files into calibrated QR label-sheet PDFs without sending label contents to the developer.",
+    },
+    ja: {
+      name: "CalibrQR",
+      summary:
+        "貼り付けた行やCSVから、ラベル内容を開発者へ送信せず、印刷位置を調整できるQRラベルPDFを作成します。",
+    },
+  },
+  {
     slug: "homeschool-binder",
     icon: "▤",
     category: "Homeschool records",
