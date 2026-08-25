@@ -20,6 +20,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /RoastTrace/);
   assert.match(html, /FlockLedger/);
   assert.match(html, /Batch Cost by DUSTLINE/);
+  assert.match(html, /Zanurami/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -90,6 +91,25 @@ test("states Moving Checklist local-data, advertising, and official-source bound
   assert.match(ja, /引越し名、予定日、世帯情報、チェック項目/);
   assert.match(ja, /Google Mobile Ads SDK（AdMob）/);
   assert.match(ja, /最新の要件を関係機関またはサービス提供者へ確認/);
+});
+
+test("states Zanurami local field-evidence, photo, export, and iOS-only purchase boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/zanurami/index.html"),
+    page("ja/privacy/zanurami/index.html"),
+  ]);
+
+  assert.match(en, /Farm, plot, and season names/);
+  assert.match(en, /Evidence photos you take with the camera or choose from the photo library/);
+  assert.match(en, /backups, CSV, JSON, and PDF files you create/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google/);
+  assert.match(en, /support@dustline\.jp/);
+  assert.match(ja, /農園名、区画名、シーズン名と期間/);
+  assert.match(ja, /カメラで撮影または写真ライブラリから選択した証跡写真/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google/);
+  assert.match(ja, /support@dustline\.jp/);
 });
 
 test("states Batch Cost local-data and calculation boundaries", async () => {

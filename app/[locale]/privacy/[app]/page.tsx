@@ -184,6 +184,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>通知、言語、プレミアム利用状態などの設定</li>
                 </ul>
               )}
+              {app.slug === "zanurami" && (
+                <ul>
+                  <li>農園名、区画名、シーズン名と期間</li>
+                  <li>作業種別、日時、タイトル、メモ、数量、単位、および修正理由と修正履歴</li>
+                  <li>ユーザーがカメラで撮影または写真ライブラリから選択した証跡写真</li>
+                  <li>言語、端末内のプレミアム利用状態、ユーザーが作成したバックアップ、CSV、JSON、PDF</li>
+                </ul>
+              )}
               {app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は履歴として保存されず、開発者が運営するサーバーへ送信されません。言語設定だけが端末内に保存されます。</p>
               ) : (
@@ -211,9 +219,15 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>読み上げには端末の音声合成サービスを使用します。その処理は端末設定とサービス提供元の方針に従います。</p>
               )}
               {app.billing !== false && (
-                <p>
-                  買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
-                </p>
+                app.slug === "zanurami" ? (
+                  <p>
+                    任意の買い切りPro購入はAppleのApp Store（StoreKit）が処理します。支払い情報はAppleが処理し、本アプリや開発者は完全な決済情報を取得しません。
+                  </p>
+                ) : (
+                  <p>
+                    買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
+                  </p>
+                )
               )}
             </section>
             <section>
@@ -232,7 +246,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
               ) : (
                 <p>
-                  端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。AppleまたはGoogleが処理する{app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。
+                  端末内データは、ユーザーが本アプリ内で削除するか、本アプリをアンインストールするまで保持されます。{(app.slug === "batch-cost" || app.slug === "bee-logbook") && "現在のバージョンでは、アプリ内の記録を一括削除する機能は提供していないため、すべての記録を削除するには本アプリをアンインストールしてください。"}エクスポート済みのファイルや共有先の複製は、各保存先でユーザーが削除する必要があります。{app.slug === "zanurami" ? "Appleが処理する購入関連データには、App Storeの保存方針が適用されます。" : `AppleまたはGoogleが処理する${app.ads ? "広告・購入関連データ" : "購入関連データ"}には、利用したストアの保存方針が適用されます。`}
                 </p>
               )}
               {app.slug === "garden-diary" && (
@@ -425,6 +439,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Notification, language, and local Premium entitlement settings</li>
               </ul>
             )}
+            {app.slug === "zanurami" && (
+              <ul>
+                <li>Farm, plot, and season names and season dates</li>
+                <li>Field-operation type, date, title, notes, quantity, unit, amendment reason, and revision history</li>
+                <li>Evidence photos you take with the camera or choose from the photo library</li>
+                <li>Language and local Pro-entitlement settings, plus backups, CSV, JSON, and PDF files you create</li>
+              </ul>
+            )}
             {app.slug === "kyou-no-mikata" ? (
               <p>Your entries and responses are not saved as history or sent to a server operated by the developer. Only the language preference stays on your device.</p>
             ) : (
@@ -452,9 +474,15 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Read-aloud uses your device&apos;s text-to-speech service. Its processing follows your device settings and the service provider&apos;s policy.</p>
             )}
             {app.billing !== false && (
-              <p>
-                The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
-              </p>
+              app.slug === "zanurami" ? (
+                <p>
+                  The optional lifetime Pro purchase is processed by Apple&apos;s App Store (StoreKit). Apple processes payment information; the app and developer do not receive your complete payment details.
+                </p>
+              ) : (
+                <p>
+                  The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
+                </p>
+              )
             )}
           </section>
           <section>
@@ -473,7 +501,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
             ) : (
               <p>
-                Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. Apple&apos;s or Google&apos;s retention policies apply to {app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.
+                Local data remains until you delete it in the app or uninstall the app. {(app.slug === "batch-cost" || app.slug === "bee-logbook") && "The current version does not include an in-app bulk-delete function, so uninstall the app to remove all of its records."} You must separately delete exported files or copies held by a sharing destination. {app.slug === "zanurami" ? "Apple's App Store retention policy applies to purchase data processed by Apple." : `Apple's or Google's retention policies apply to ${app.ads ? "advertising and purchase data" : "purchase data"} processed by the store you use.`}
               </p>
             )}
             {app.slug === "garden-diary" && (

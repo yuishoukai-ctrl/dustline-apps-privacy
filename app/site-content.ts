@@ -72,6 +72,29 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "zanurami",
+    icon: "▦",
+    category: "Field evidence",
+    accent: "green",
+    ads: false,
+    health: false,
+    childrenAge: 18,
+    noticeEn:
+      "This app organizes user-entered field records and evidence packets. It does not certify regulatory compliance or provide agronomic, pesticide, food-safety, legal, tax, or accounting advice.",
+    noticeJa:
+      "本アプリはユーザーが入力した圃場記録と証跡資料を整理するもので、法令適合を証明したり、栽培・農薬・食品安全・法務・税務・会計上の助言を提供したりするものではありません。",
+    en: {
+      name: "Zanurami",
+      summary:
+        "Keep farm, plot, season, field-event, revision, and photo evidence private on your device and export records you choose.",
+    },
+    ja: {
+      name: "Zanurami 圃場証跡ノート",
+      summary:
+        "農園、区画、シーズン、作業、修正履歴、写真証跡を端末内で管理し、選んだ記録を書き出せます。",
+    },
+  },
+  {
     slug: "noise-diary",
     icon: "◉",
     category: "Sound & wellbeing",
