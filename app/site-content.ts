@@ -13,11 +13,14 @@ export type AppInfo = {
   ads: boolean;
   adsAndroidOnly?: boolean;
   billing?: boolean;
+  googlePlayOnlyBilling?: boolean;
   exporting?: boolean;
   health: boolean;
   childrenAge?: 13 | 18;
   noticeEn?: string;
   noticeJa?: string;
+  updatedDateEn?: string;
+  updatedDateJa?: string;
   en: LocalizedApp;
   ja: LocalizedApp;
 };
@@ -440,6 +443,34 @@ export const apps: AppInfo[] = [
     ja: {
       name: "TryClock",
       summary: "返品期限、購入情報、メモ、リマインダーを端末内で管理します。",
+    },
+  },
+  {
+    slug: "tool-life-pocket",
+    icon: "◇",
+    category: "CNC tooling records",
+    accent: "blue",
+    ads: false,
+    billing: true,
+    googlePlayOnlyBilling: true,
+    exporting: true,
+    health: false,
+    childrenAge: 18,
+    noticeEn:
+      "This app organizes cutter-use and inspection records entered by the user. It does not determine safe tool life, feeds or speeds, machine settings, or safe machine operation, and it does not control equipment. Follow manufacturer guidance and applicable workplace safety procedures.",
+    noticeJa:
+      "本アプリはユーザーが入力したカッターの使用・点検記録を整理するもので、安全な工具寿命、送り・回転数、機械設定、安全運転を判定せず、機器を制御しません。メーカーの指示および職場の安全手順に従ってください。",
+    updatedDateEn: "August 25, 2026",
+    updatedDateJa: "2026年8月25日",
+    en: {
+      name: "ToolLife Pocket",
+      summary:
+        "Keep CNC cutter, machine, use, inspection, resharpening, photo, and local QR records on your device.",
+    },
+    ja: {
+      name: "ToolLife Pocket",
+      summary:
+        "CNCカッター、機械、使用・点検・再研磨、写真、ローカルQRの記録を端末内で管理します。",
     },
   },
 ];

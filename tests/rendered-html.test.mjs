@@ -21,6 +21,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /FlockLedger/);
   assert.match(html, /Batch Cost by DUSTLINE/);
   assert.match(html, /Zanurami/);
+  assert.match(html, /ToolLife Pocket/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -178,6 +179,50 @@ test("states FlockLedger local-data and animal-care boundaries", async () => {
   assert.match(ja, /鶏群名、個体名・識別ID、品種、状態/);
   assert.match(ja, /採卵数、飼料使用量、飼料費、その他費用、卵の売上/);
   assert.match(ja, /動物の診断/);
+});
+
+test("states ToolLife Pocket local-data, permission, export, billing, and deletion boundaries", async () => {
+  const [en, ja, supportEn, supportJa] = await Promise.all([
+    page("en/privacy/tool-life-pocket/index.html"),
+    page("ja/privacy/tool-life-pocket/index.html"),
+    page("en/support/index.html"),
+    page("ja/support/index.html"),
+  ]);
+
+  assert.match(en, /Cutter names and types, local tool IDs/);
+  assert.match(en, /August 25, 2026/);
+  assert.match(en, /Cutter-use, inspection, and resharpening history/);
+  assert.match(en, /system photo picker/);
+  assert.match(en, /QR labels that identify only a local tool ID/);
+  assert.match(en, /JSON backups you import or export, and CSV files you export/);
+  assert.match(en, /No account is required/);
+  assert.match(en, /does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service/);
+  assert.match(en, /does not collect location, microphone audio, contacts, or background data/);
+  assert.match(en, /Dustline does not collect, share, analyze, or sync/);
+  assert.match(en, /requests camera permission only when a Premium user chooses to scan a local QR label/);
+  assert.match(en, /Google Play Billing processes the optional lifetime Premium purchase/);
+  assert.doesNotMatch(en, /Apple.*App Store|StoreKit/);
+  assert.match(en, /do not include Google Play purchase tokens, order IDs, or Premium entitlement information/);
+  assert.match(en, /delete cutter, machine, history, and inspection-photo records individually in the app/);
+
+  assert.match(ja, /カッターの名称・種類、ローカル工具ID/);
+  assert.match(ja, /2026年8月25日/);
+  assert.match(ja, /カッターの使用、点検、再研磨の履歴/);
+  assert.match(ja, /システムのフォトピッカー/);
+  assert.match(ja, /ローカル工具IDだけを識別するQRラベル/);
+  assert.match(ja, /JSONバックアップのインポート・エクスポートとCSVエクスポート/);
+  assert.match(ja, /アカウント登録は不要/);
+  assert.match(ja, /広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません/);
+  assert.match(ja, /位置情報、マイク音声、連絡先、バックグラウンドデータを収集しません/);
+  assert.match(ja, /Dustlineは、カッター、機械、履歴、写真、QRの各記録を収集、共有、分析、同期しません/);
+  assert.match(ja, /プレミアムユーザーがローカルQRラベルのスキャンを選択した場合にのみ要求/);
+  assert.match(ja, /任意の買い切りプレミアム購入にはGoogle Play Billingを使用/);
+  assert.doesNotMatch(ja, /Apple.*App Store|StoreKit/);
+  assert.match(ja, /Google Playの購入トークン、注文ID、プレミアム権利情報を含めません/);
+  assert.match(ja, /アプリ内の削除操作で個別に削除でき/);
+
+  assert.match(supportEn, /ToolLife Pocket/);
+  assert.match(supportJa, /ToolLife Pocket/);
 });
 
 test("states app-specific safety and business boundaries for the next three apps", async () => {

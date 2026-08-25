@@ -35,7 +35,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         <div className="shell policyLayout">
           <aside className="policyAside">
             <p>施行日・最終更新日</p>
-            <strong>{updatedDateJa}</strong>
+            <strong>{app.updatedDateJa ?? updatedDateJa}</strong>
             <Link href={`/${otherLocale}/privacy/${app.slug}`}>Read in English →</Link>
           </aside>
           <article className="policyBody">
@@ -192,10 +192,25 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>言語、端末内のプレミアム利用状態、ユーザーが作成したバックアップ、CSV、JSON、PDF</li>
                 </ul>
               )}
+              {app.slug === "tool-life-pocket" && (
+                <ul>
+                  <li>カッターの名称・種類、ローカル工具ID、任意の機械・作業参照、費用、メモ</li>
+                  <li>カッターの使用、点検、再研磨の履歴およびユーザーが入力した観察内容</li>
+                  <li>システムのフォトピッカーでユーザーが選択し、点検記録としてアプリ専用ストレージへコピーされる任意の写真</li>
+                  <li>ローカル工具IDだけを識別するQRラベル（費用、作業参照、メモその他の記録内容は含みません）</li>
+                  <li>言語、表示単位、端末内のプレミアム利用状態、インポートまたはエクスポートするJSONバックアップ、エクスポートするCSVファイル</li>
+                </ul>
+              )}
               {app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は履歴として保存されず、開発者が運営するサーバーへ送信されません。言語設定だけが端末内に保存されます。</p>
               ) : (
                 <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
+              )}
+              {app.slug === "tool-life-pocket" && (
+                <>
+                  <p>本アプリの主要な記録機能はオフラインで動作します。Dustlineは、カッター、機械、履歴、写真、QRの各記録を収集、共有、分析、同期しません。本アプリは、位置情報、マイク音声、連絡先、バックグラウンドデータを収集しません。</p>
+                  <p>カメラ権限は、プレミアムユーザーがローカルQRラベルのスキャンを選択した場合にのみ要求します。点検写真は、ユーザーがシステムのフォトピッカーで明示的に選択したものだけを扱います。</p>
+                </>
               )}
               {app.slug === "try-clock" && (
                 <p>Androidのバックアップを有効にしている場合、端末設定に従ってアプリのローカルデータがGoogleアカウントへバックアップされる場合があります。</p>
@@ -223,6 +238,10 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <p>
                     任意の買い切りPro購入はAppleのApp Store（StoreKit）が処理します。支払い情報はAppleが処理し、本アプリや開発者は完全な決済情報を取得しません。
                   </p>
+                ) : app.googlePlayOnlyBilling ? (
+                  <p>
+                    任意の買い切りプレミアム購入にはGoogle Play Billingを使用します。本アプリは商品の利用可否、購入状態、ストアが返すローカライズ済み価格をGoogle Playへ問い合わせます。購入と支払い情報はGoogle Playが処理し、本アプリや開発者は完全な決済情報を取得しません。
+                  </p>
                 ) : (
                   <p>
                     買い切りプレミアムの購入処理には、iOSではAppleのApp Store（StoreKit）、AndroidではGoogle Play Billingを使用します。支払い情報は各ストアが処理し、本アプリや開発者は完全な決済情報を取得しません。
@@ -239,6 +258,9 @@ export default async function PrivacyPage({ params }: PageProps) {
                   ユーザーがエクスポートまたは共有操作を実行した場合に限り、選択した情報がOSの共有機能を通じてユーザー指定先へ渡されます。保存先や共有先での取り扱いは、当該サービスの方針に従います。
                 </p>
               )}
+              {app.slug === "tool-life-pocket" && (
+                <p>JSONバックアップのインポート・エクスポートとCSVエクスポートは、ユーザーが操作した場合にのみ実行されます。JSON・CSVのエクスポートには、Google Playの購入トークン、注文ID、プレミアム権利情報を含めません。</p>
+              )}
             </section>
             <section>
               <h2>5. 保存期間と削除</h2>
@@ -253,6 +275,9 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>
                   本アプリの設定画面で「すべての記録を削除」を選択すると、菜園、植物、タスク、記録、収穫、保存写真を端末から削除できます。この操作は元に戻せません。広告・購入関連データはGoogleが処理するため、Googleの保存・削除方針が適用されます。
                 </p>
+              )}
+              {app.slug === "tool-life-pocket" && (
+                <p>カッター、機械、履歴、点検写真はアプリ内の削除操作で個別に削除でき、本アプリをアンインストールすると残りのローカルデータが削除されます。アプリ外へ保存したJSON・CSVファイルやQRラベルは、各保存先で別途削除してください。</p>
               )}
             </section>
             <section>
@@ -290,7 +315,7 @@ export default async function PrivacyPage({ params }: PageProps) {
       <div className="shell policyLayout">
         <aside className="policyAside">
           <p>Effective and last updated</p>
-          <strong>{updatedDate}</strong>
+          <strong>{app.updatedDateEn ?? updatedDate}</strong>
           <Link href={`/${otherLocale}/privacy/${app.slug}`}>日本語で読む →</Link>
         </aside>
         <article className="policyBody">
@@ -447,10 +472,25 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Language and local Pro-entitlement settings, plus backups, CSV, JSON, and PDF files you create</li>
               </ul>
             )}
+            {app.slug === "tool-life-pocket" && (
+              <ul>
+                <li>Cutter names and types, local tool IDs, optional machine and job references, costs, and notes</li>
+                <li>Cutter-use, inspection, and resharpening history, including observations you enter</li>
+                <li>Optional photos you select with the system photo picker and that the app copies into app-private storage for an inspection record</li>
+                <li>QR labels that identify only a local tool ID and do not contain costs, job references, notes, or other record contents</li>
+                <li>Language, display units, local Premium entitlement settings, JSON backups you import or export, and CSV files you export</li>
+              </ul>
+            )}
             {app.slug === "kyou-no-mikata" ? (
               <p>Your entries and responses are not saved as history or sent to a server operated by the developer. Only the language preference stays on your device.</p>
             ) : (
               <p>These records stay on your device and are not sent to a server operated by the developer.</p>
+            )}
+            {app.slug === "tool-life-pocket" && (
+              <>
+                <p>The app&apos;s core record-keeping features work offline. Dustline does not collect, share, analyze, or sync cutter, machine, history, photo, or QR records. The app does not collect location, microphone audio, contacts, or background data.</p>
+                <p>The app requests camera permission only when a Premium user chooses to scan a local QR label. It handles an inspection photo only when you explicitly select it with the system photo picker.</p>
+              </>
             )}
             {app.slug === "try-clock" && (
               <p>If Android device backup is enabled, Android may back up the local app database under your Google account settings.</p>
@@ -478,6 +518,10 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>
                   The optional lifetime Pro purchase is processed by Apple&apos;s App Store (StoreKit). Apple processes payment information; the app and developer do not receive your complete payment details.
                 </p>
+              ) : app.googlePlayOnlyBilling ? (
+                <p>
+                  Google Play Billing processes the optional lifetime Premium purchase. The app asks Google Play for product availability, purchase state, and the store-supplied localized price. Google Play processes the purchase and payment information; the app and developer do not receive your complete payment details.
+                </p>
               ) : (
                 <p>
                   The optional lifetime Premium purchase is processed by Apple&apos;s App Store (StoreKit) on iOS or Google Play Billing on Android. The applicable store processes payment information; the app and developer do not receive your complete payment details.
@@ -494,6 +538,9 @@ export default async function PrivacyPage({ params }: PageProps) {
                 Only when you start an export or share action does selected information pass through the operating system&apos;s share interface to a destination you choose. The destination&apos;s own policy governs its copy.
               </p>
             )}
+            {app.slug === "tool-life-pocket" && (
+              <p>JSON backup import and export and CSV export occur only when you initiate them. JSON and CSV exports do not include Google Play purchase tokens, order IDs, or Premium entitlement information.</p>
+            )}
           </section>
           <section>
             <h2>5. Retention and deletion</h2>
@@ -508,6 +555,9 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>
                 In the app, open Settings and choose Delete all records to remove gardens, plants, tasks, logs, harvests, and saved photos from your device. This cannot be undone. Google processes advertising and purchase data, so Google&apos;s retention and deletion policies apply to that data.
               </p>
+            )}
+            {app.slug === "tool-life-pocket" && (
+              <p>You can delete cutter, machine, history, and inspection-photo records individually in the app. Uninstalling the app deletes remaining local app data. Delete JSON or CSV files and QR labels saved outside the app separately at their destinations.</p>
             )}
           </section>
           <section>
