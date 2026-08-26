@@ -25,6 +25,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /CalibrQR/);
   assert.match(html, /CleanText Lab/);
   assert.match(html, /Custom Bingo Sheet/);
+  assert.match(html, /Photo Contact Sheet/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -46,6 +47,7 @@ for (const app of [
   { slug: "calibrqr", en: "CalibrQR", ja: "CalibrQR", billing: false },
   { slug: "cleantext-lab", en: "CleanText Lab", ja: "CleanText Lab", billing: false },
   { slug: "custom-bingo-sheet", en: "Custom Bingo Sheet", ja: "カスタム・ビンゴシート", billing: false },
+  { slug: "photo-contact-sheet", en: "Photo Contact Sheet", ja: "写真コンタクトシート", billing: false },
 ]) {
   test(`exports English and Japanese privacy pages for ${app.slug}`, async () => {
     const [en, ja] = await Promise.all([
@@ -328,4 +330,31 @@ test("states Custom Bingo Sheet local projects, explicit PDF sharing, and iOS St
   assert.match(ja, /AppleのApp Store（StoreKit）/);
   assert.doesNotMatch(ja, /Google Play Billing/);
   assert.match(ja, /エクスポートまたは共有操作を実行した場合に限り/);
+});
+
+test("states Photo Contact Sheet selected-item, temporary-data, sharing, and iOS StoreKit boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/photo-contact-sheet/index.html"),
+    page("ja/privacy/photo-contact-sheet/index.html"),
+  ]);
+
+  assert.match(en, /JPEG, PNG, or HEIC still images you explicitly select/);
+  assert.match(en, /does not request full-library photo permission/);
+  assert.match(en, /not sent to a server operated by the developer/);
+  assert.match(en, /temporary metadata-free images/);
+  assert.match(en, /one content-free layout preset/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+  assert.match(en, /Only when you start an export or share action/);
+  assert.match(en, /does not guarantee physical print scale or colour reproduction/);
+
+  assert.match(ja, /明示的に選択したJPEG、PNG、HEICの静止画/);
+  assert.match(ja, /写真ライブラリ全体へのアクセス権限を要求せず/);
+  assert.match(ja, /開発者が運営するサーバーへ送信されません/);
+  assert.match(ja, /メタデータを除去した一時画像/);
+  assert.match(ja, /写真・文字を含まない1件のレイアウト設定/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+  assert.match(ja, /エクスポートまたは共有操作を実行した場合に限り/);
+  assert.match(ja, /物理的な印刷倍率や色再現は保証せず/);
 });

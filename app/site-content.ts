@@ -413,6 +413,34 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "photo-contact-sheet",
+    icon: "▧",
+    category: "Local photo-sheet PDFs",
+    accent: "blue",
+    ads: false,
+    billing: false,
+    iosStoreKitOnly: true,
+    exporting: true,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 25, 2026",
+    updatedDateJa: "2026年8月25日",
+    noticeEn:
+      "Photo Contact Sheet creates A4 or US Letter photo-sheet PDFs. It does not guarantee physical print scale or colour reproduction, and it does not provide AirPrint or printer certification.",
+    noticeJa:
+      "写真コンタクトシートはA4またはUS Letterの写真一覧PDFを作成します。物理的な印刷倍率や色再現は保証せず、AirPrint機能やプリンターの適合保証は提供しません。",
+    en: {
+      name: "Photo Contact Sheet",
+      summary:
+        "Create photo-sheet PDFs on your device from only the photos you select, without uploading photo contents to the developer.",
+    },
+    ja: {
+      name: "写真コンタクトシート",
+      summary:
+        "明示的に選択した写真だけから、写真内容を開発者へ送信せず、端末内で一覧PDFを作成します。",
+    },
+  },
+  {
     slug: "homeschool-binder",
     icon: "▤",
     category: "Homeschool records",
