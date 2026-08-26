@@ -609,6 +609,30 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "garbage-day-reminder",
+    icon: "▣",
+    category: "Household scheduling",
+    accent: "green",
+    ads: true,
+    billing: true,
+    googlePlayOnlyBilling: true,
+    exporting: false,
+    health: false,
+    childrenAge: 18,
+    updatedDateEn: "August 26, 2026",
+    updatedDateJa: "2026年8月26日",
+    en: {
+      name: "Garbage Day Reminder",
+      summary:
+        "Keep local collection schedules, one-time disposal dates, and reminder settings on your device.",
+    },
+    ja: {
+      name: "ゴミの日リマインダー",
+      summary:
+        "地域の収集予定、臨時のごみ出し日、通知設定を端末内で管理します。",
+    },
+  },
+  {
     slug: "tool-life-pocket",
     icon: "◇",
     category: "CNC tooling records",

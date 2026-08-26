@@ -231,6 +231,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>言語、広告同意、端末内のPRO利用状態などの設定</li>
                 </ul>
               )}
+              {app.slug === "garbage-day-reminder" && (
+                <ul>
+                  <li>地域名、ごみ種別名、色、アイコン、収集曜日、毎週・隔週・月内の週指定</li>
+                  <li>前日夜・当日朝の通知設定と通知時刻、臨時のごみ出し日</li>
+                  <li>言語、広告同意、端末内のプレミアム利用状態などの設定</li>
+                </ul>
+              )}
               {app.slug === "zanurami" && (
                 <ul>
                   <li>農園名、区画名、シーズン名と期間</li>
@@ -581,6 +588,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Whether a gift was given or received, the person&apos;s name, relationship, and occasion</li>
                 <li>Amount, date, return-gift status, notes, and other gift-record details</li>
                 <li>Language, advertising consent, and local PRO entitlement settings</li>
+              </ul>
+            )}
+            {app.slug === "garbage-day-reminder" && (
+              <ul>
+                <li>Area names, waste-type names, colors, icons, collection weekdays, and weekly, biweekly, or monthly-week schedules</li>
+                <li>Previous-evening and collection-morning notification settings and times, plus one-time disposal dates</li>
+                <li>Language, advertising consent, and local Premium entitlement settings</li>
               </ul>
             )}
             {app.slug === "zanurami" && (
