@@ -369,7 +369,7 @@ test("states Photo Contact Sheet selected-item, temporary-data, sharing, and iOS
     page("ja/privacy/photo-contact-sheet/index.html"),
   ]);
 
-  assert.match(en, /JPEG, PNG, or HEIC still images you explicitly select/);
+  assert.match(en, /JPEG, PNG, HEIC, or HEIF still images you explicitly select/);
   assert.match(en, /does not request full-library photo permission/);
   assert.match(en, /not sent to a server operated by the developer/);
   assert.match(en, /metadata-free working images held only in memory/);
@@ -379,7 +379,7 @@ test("states Photo Contact Sheet selected-item, temporary-data, sharing, and iOS
   assert.match(en, /Only when you start an export or share action/);
   assert.match(en, /does not guarantee physical print scale or colour reproduction/);
 
-  assert.match(ja, /明示的に選択したJPEG、PNG、HEICの静止画/);
+  assert.match(ja, /明示的に選択したJPEG、PNG、HEIC、HEIFの静止画/);
   assert.match(ja, /写真ライブラリ全体へのアクセス権限を要求せず/);
   assert.match(ja, /開発者が運営するサーバーへ送信されません/);
   assert.match(ja, /メタデータを除去した作業用画像/);

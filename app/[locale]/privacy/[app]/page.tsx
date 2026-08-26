@@ -168,7 +168,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               )}
               {app.slug === "photo-contact-sheet" && (
                 <ul>
-                  <li>システムの写真ピッカーでユーザーが明示的に選択したJPEG、PNG、HEICの静止画</li>
+                  <li>システムの写真ピッカーでユーザーが明示的に選択したJPEG、PNG、HEIC、HEIFの静止画</li>
                   <li>現在の作業で入力する任意のタイトル、写真キャプション、用紙・グリッド・配置設定</li>
                   <li>端末内のPro利用状態と、ユーザーが明示的に保存する写真・文字を含まない1件のレイアウト設定</li>
                   <li>ユーザーが明示的に作成する一時PDF。位置情報、連絡先、カメラ、マイク、写真ライブラリ全体へのアクセス権限は扱いません。</li>
@@ -520,7 +520,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             )}
             {app.slug === "photo-contact-sheet" && (
               <ul>
-                <li>JPEG, PNG, or HEIC still images you explicitly select with the system photo picker</li>
+                <li>JPEG, PNG, HEIC, or HEIF still images you explicitly select with the system photo picker</li>
                 <li>Optional titles, photo captions, paper, grid, and placement settings for the current session</li>
                 <li>A local Pro-entitlement state and one content-free layout preset that you explicitly save</li>
                 <li>Temporary PDFs you explicitly create. The app does not handle location, contacts, camera, microphone, or full-library photo permission.</li>
