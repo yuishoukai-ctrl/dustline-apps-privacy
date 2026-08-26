@@ -357,6 +357,34 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "cleantext-lab",
+    icon: "¶",
+    category: "Offline text cleanup",
+    accent: "blue",
+    ads: false,
+    billing: false,
+    iosStoreKitOnly: true,
+    exporting: true,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 25, 2026",
+    updatedDateJa: "2026年8月25日",
+    noticeEn:
+      "CleanText Lab applies only the cleanup rules selected by the user. Always review the preview before sharing the result; the app does not determine whether an edit is appropriate for a particular document.",
+    noticeJa:
+      "CleanText Labは、ユーザーが選択した整形ルールだけを適用します。共有前に必ずプレビューをご確認ください。本アプリは、変更が特定の文書に適切かどうかを判断しません。",
+    en: {
+      name: "CleanText Lab",
+      summary:
+        "Inspect invisible characters and create an optional cleaned text copy without sending document contents to the developer.",
+    },
+    ja: {
+      name: "CleanText Lab",
+      summary:
+        "不可視文字を確認し、文書内容を開発者へ送信せず、選択したルールで整形コピーを作成します。",
+    },
+  },
+  {
     slug: "homeschool-binder",
     icon: "▤",
     category: "Homeschool records",
