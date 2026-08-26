@@ -224,6 +224,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>通知、言語、プレミアム利用状態などの設定</li>
                 </ul>
               )}
+              {app.slug === "gift-record" && (
+                <ul>
+                  <li>贈答を贈った・受け取った区分、相手の名前、関係、用途</li>
+                  <li>金額、日付、返礼状況、メモなどの贈答記録</li>
+                  <li>言語、広告同意、端末内のPRO利用状態などの設定</li>
+                </ul>
+              )}
               {app.slug === "zanurami" && (
                 <ul>
                   <li>農園名、区画名、シーズン名と期間</li>
@@ -567,6 +574,13 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>Item names, retailers, prices, purchase dates, return deadlines, statuses, and notes</li>
                 <li>References to photos or documents you select</li>
                 <li>Notification, language, and local Premium entitlement settings</li>
+              </ul>
+            )}
+            {app.slug === "gift-record" && (
+              <ul>
+                <li>Whether a gift was given or received, the person&apos;s name, relationship, and occasion</li>
+                <li>Amount, date, return-gift status, notes, and other gift-record details</li>
+                <li>Language, advertising consent, and local PRO entitlement settings</li>
               </ul>
             )}
             {app.slug === "zanurami" && (

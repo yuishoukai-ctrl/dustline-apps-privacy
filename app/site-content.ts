@@ -585,6 +585,30 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "gift-record",
+    icon: "◆",
+    category: "Gift records",
+    accent: "rose",
+    ads: true,
+    billing: true,
+    googlePlayOnlyBilling: true,
+    exporting: false,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 26, 2026",
+    updatedDateJa: "2026年8月26日",
+    en: {
+      name: "Gift Record",
+      summary:
+        "Keep gifts given and received, people, occasions, amounts, dates, and notes on your device.",
+    },
+    ja: {
+      name: "香典帳・ご祝儀帳",
+      summary:
+        "贈った・受け取った贈答、相手、用途、金額、日付、メモを端末内で管理します。",
+    },
+  },
+  {
     slug: "tool-life-pocket",
     icon: "◇",
     category: "CNC tooling records",

@@ -26,6 +26,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /CleanText Lab/);
   assert.match(html, /Custom Bingo Sheet/);
   assert.match(html, /Photo Contact Sheet/);
+  assert.match(html, /Gift Record/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -232,6 +233,36 @@ test("states ToolLife Pocket local-data, permission, export, billing, and deleti
 
   assert.match(supportEn, /ToolLife Pocket/);
   assert.match(supportJa, /ToolLife Pocket/);
+});
+
+test("states Gift Record local-data, ads, billing, no-export, and deletion boundaries", async () => {
+  const [en, ja, supportEn, supportJa] = await Promise.all([
+    page("en/privacy/gift-record/index.html"),
+    page("ja/privacy/gift-record/index.html"),
+    page("en/support/index.html"),
+    page("ja/support/index.html"),
+  ]);
+
+  assert.match(en, /Whether a gift was given or received/);
+  assert.match(en, /Amount, date, return-gift status, notes/);
+  assert.match(en, /These records stay on your device/);
+  assert.match(en, /Google Mobile Ads SDK \(AdMob\)/);
+  assert.match(en, /Google Play Billing processes the optional lifetime Premium purchase/);
+  assert.doesNotMatch(en, /Apple.*App Store|StoreKit/);
+  assert.match(en, /no feature that exports or shares/);
+  assert.match(en, /until you delete it in the app or uninstall the app/);
+
+  assert.match(ja, /贈答を贈った・受け取った区分/);
+  assert.match(ja, /金額、日付、返礼状況、メモ/);
+  assert.match(ja, /これらの記録は端末内に保存/);
+  assert.match(ja, /Google Mobile Ads SDK（AdMob）/);
+  assert.match(ja, /任意の買い切りプレミアム購入にはGoogle Play Billingを使用/);
+  assert.doesNotMatch(ja, /Apple.*App Store|StoreKit/);
+  assert.match(ja, /エクスポート・共有する機能はありません/);
+  assert.match(ja, /本アプリ内で削除するか、本アプリをアンインストール/);
+
+  assert.match(supportEn, /Gift Record/);
+  assert.match(supportJa, /香典帳・ご祝儀帳/);
 });
 
 test("states app-specific safety and business boundaries for the next three apps", async () => {
