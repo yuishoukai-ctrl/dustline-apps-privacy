@@ -24,6 +24,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /ToolLife Pocket/);
   assert.match(html, /CalibrQR/);
   assert.match(html, /CleanText Lab/);
+  assert.match(html, /Custom Bingo Sheet/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/);
 });
 
@@ -44,6 +45,7 @@ for (const app of [
   { slug: "engine-note", en: "Engine Note", ja: "Engine Note", billing: false },
   { slug: "calibrqr", en: "CalibrQR", ja: "CalibrQR", billing: false },
   { slug: "cleantext-lab", en: "CleanText Lab", ja: "CleanText Lab", billing: false },
+  { slug: "custom-bingo-sheet", en: "Custom Bingo Sheet", ja: "カスタム・ビンゴシート", billing: false },
 ]) {
   test(`exports English and Japanese privacy pages for ${app.slug}`, async () => {
     const [en, ja] = await Promise.all([
@@ -303,6 +305,26 @@ test("states CleanText Lab memory-only text handling, explicit sharing, and iOS 
   assert.match(ja, /貼り付けまたは読み込んだ本文とファイル名は作業中のメモリ上だけで処理/);
   assert.match(ja, /本文とファイル名は文書履歴として保存しません/);
   assert.match(ja, /1件のルール設定/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+  assert.match(ja, /エクスポートまたは共有操作を実行した場合に限り/);
+});
+
+test("states Custom Bingo Sheet local projects, explicit PDF sharing, and iOS StoreKit boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/custom-bingo-sheet/index.html"),
+    page("ja/privacy/custom-bingo-sheet/index.html"),
+  ]);
+
+  assert.match(en, /Project name, phrases, header, and free-cell label/);
+  assert.match(en, /processed only on your device and are not sent/);
+  assert.match(en, /does not conduct drawings, choose winners, manage prizes or wagers/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+  assert.match(en, /Only when you start an export or share action/);
+  assert.match(ja, /プロジェクト名、語句、見出し、フリーセルの表示/);
+  assert.match(ja, /端末上だけで処理され/);
+  assert.match(ja, /抽選、勝者選定、賞品・賭けの管理/);
   assert.match(ja, /AppleのApp Store（StoreKit）/);
   assert.doesNotMatch(ja, /Google Play Billing/);
   assert.match(ja, /エクスポートまたは共有操作を実行した場合に限り/);

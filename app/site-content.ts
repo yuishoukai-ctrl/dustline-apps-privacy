@@ -385,6 +385,34 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "custom-bingo-sheet",
+    icon: "▦",
+    category: "Offline activity-card PDFs",
+    accent: "rose",
+    ads: false,
+    billing: false,
+    iosStoreKitOnly: true,
+    exporting: true,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 25, 2026",
+    updatedDateJa: "2026年8月25日",
+    noticeEn:
+      "Custom Bingo Sheet creates printable activity-card layouts only. It does not conduct drawings, choose winners, manage prizes or wagers, or run online games. Shuffling is for variety and is not guaranteed to be fair or balanced; viewer or printer scaling may change physical output size.",
+    noticeJa:
+      "Custom Bingo Sheetは印刷用アクティビティカードのレイアウトだけを作成します。抽選、勝者選定、賞品・賭けの管理、オンライン対戦は行いません。配置のシャッフルは変化を作るためのもので、公平性や均等性を保証しません。表示アプリやプリンターの拡大縮小により物理的な出力サイズは変わります。",
+    en: {
+      name: "Custom Bingo Sheet",
+      summary:
+        "Turn your own phrase list into offline randomized activity-card PDFs without sending project contents to the developer.",
+    },
+    ja: {
+      name: "カスタム・ビンゴシート",
+      summary:
+        "自分の語句リストから、プロジェクト内容を開発者へ送信せず、オフラインで印刷用アクティビティカードPDFを作成します。",
+    },
+  },
+  {
     slug: "homeschool-binder",
     icon: "▤",
     category: "Homeschool records",
