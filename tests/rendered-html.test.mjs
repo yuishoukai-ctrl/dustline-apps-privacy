@@ -23,6 +23,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /Zanurami/);
   assert.match(html, /ToolLife Pocket/);
   assert.match(html, /CalibrQR/);
+  assert.match(html, /Cleaning Rhythm/);
   assert.match(html, /CleanText Lab/);
   assert.match(html, /Custom Bingo Sheet/);
   assert.match(html, /Photo Contact Sheet/);
@@ -46,6 +47,7 @@ for (const app of [
   { slug: "flockledger", en: "FlockLedger", ja: "FlockLedger 鶏・採卵・費用台帳" },
   { slug: "engine-note", en: "Engine Note", ja: "Engine Note", billing: false },
   { slug: "calibrqr", en: "CalibrQR", ja: "CalibrQR", billing: false },
+  { slug: "cleaning-rhythm", en: "Cleaning Rhythm", ja: "Cleaning Rhythm", billing: false },
   { slug: "cleantext-lab", en: "CleanText Lab", ja: "CleanText Lab", billing: false },
   { slug: "custom-bingo-sheet", en: "Custom Bingo Sheet", ja: "カスタム・ビンゴシート", billing: false },
   { slug: "photo-contact-sheet", en: "Photo Contact Sheet", ja: "写真コンタクトシート", billing: false },
@@ -72,6 +74,24 @@ for (const app of [
     assert.match(ja, /support@dustline\.jp/);
   });
 }
+
+test("states Cleaning Rhythm local records, export, purchase, and safety boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/cleaning-rhythm/index.html"),
+    page("ja/privacy/cleaning-rhythm/index.html"),
+  ]);
+
+  assert.match(en, /Room names, cleaning-task names, and intervals/);
+  assert.match(en, /JSON backups and CSV files/);
+  assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+  assert.match(en, /does not verify cleaning quality, hygiene, sanitation, or safety requirements/);
+  assert.match(ja, /部屋名、掃除タスク名、実施間隔/);
+  assert.match(ja, /JSONバックアップおよびCSVファイル/);
+  assert.match(ja, /AppleのApp Store（StoreKit）/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+  assert.match(ja, /清掃品質、衛生状態、消毒、安全要件/);
+});
 
 test("states Your Ally Today no-retention, no-SDK, and wellbeing boundaries", async () => {
   const [en, ja] = await Promise.all([

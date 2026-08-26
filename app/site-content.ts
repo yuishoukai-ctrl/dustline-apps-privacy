@@ -1,3 +1,5 @@
+import { assertSiteContentMatchesRegistry } from "./app-registry";
+
 export type Locale = "en" | "ja";
 
 type LocalizedApp = {
@@ -357,6 +359,34 @@ export const apps: AppInfo[] = [
     },
   },
   {
+    slug: "cleaning-rhythm",
+    icon: "◷",
+    category: "Offline cleaning routines",
+    accent: "green",
+    ads: false,
+    billing: false,
+    iosStoreKitOnly: true,
+    exporting: true,
+    health: false,
+    childrenAge: 13,
+    updatedDateEn: "August 26, 2026",
+    updatedDateJa: "2026年8月26日",
+    noticeEn:
+      "Cleaning Rhythm calculates due dates only from the intervals and completion dates entered by the user. It does not verify cleaning quality, hygiene, sanitation, or safety requirements.",
+    noticeJa:
+      "Cleaning Rhythmは、ユーザーが入力した間隔と完了日だけから期限を計算します。清掃品質、衛生状態、消毒、安全要件への適合を確認するものではありません。",
+    en: {
+      name: "Cleaning Rhythm",
+      summary:
+        "Keep room-based cleaning tasks, intervals, and completion history on your device, with exports you explicitly choose.",
+    },
+    ja: {
+      name: "Cleaning Rhythm",
+      summary:
+        "部屋ごとの掃除タスク、間隔、完了履歴を端末内で管理し、選択した場合だけ書き出せます。",
+    },
+  },
+  {
     slug: "cleantext-lab",
     icon: "¶",
     category: "Offline text cleanup",
@@ -664,6 +694,10 @@ export const apps: AppInfo[] = [
 
 export const updatedDate = "August 24, 2026";
 export const updatedDateJa = "2026年8月24日";
+
+// The registry is the release-facing identity and URL contract for its entries.
+// This leaves historic policy pages intact while rejecting a registered slug/name drift.
+assertSiteContentMatchesRegistry(apps);
 
 export function getApp(slug: string) {
   return apps.find((app) => app.slug === slug);

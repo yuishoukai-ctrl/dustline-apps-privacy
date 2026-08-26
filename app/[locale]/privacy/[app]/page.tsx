@@ -150,6 +150,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                   <li>読み込んだラベル文字列とQR内容は履歴やテンプレートには保存しません。</li>
                 </ul>
               )}
+              {app.slug === "cleaning-rhythm" && (
+                <ul>
+                  <li>ユーザーが入力する部屋名、掃除タスク名、実施間隔</li>
+                  <li>タスクの完了日時と、端末内で算出する次回期限</li>
+                  <li>言語、端末内のプレミアム利用状態</li>
+                  <li>ユーザーが明示的に作成するJSONバックアップおよびCSVファイル</li>
+                </ul>
+              )}
               {app.slug === "cleantext-lab" && (
                 <ul>
                   <li>ユーザーが貼り付ける本文、またはシステムのファイル選択機能で選んだTXT・CSVファイルの本文とファイル名</li>
@@ -305,7 +313,7 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>写真の選択にはiOSのシステム写真ピッカーを使用します。本アプリは写真ライブラリ全体へのアクセス権限を要求せず、ユーザーが選択した項目だけを受け取ります。iCloud上の選択項目はAppleのサービスが取得する場合があります。</p>
               )}
               {(app.billing !== false || app.iosStoreKitOnly) && (
-                app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" || app.slug === "cleantext-lab" || app.slug === "custom-bingo-sheet" || app.slug === "photo-contact-sheet" ? (
+                app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" || app.slug === "cleaning-rhythm" || app.slug === "cleantext-lab" || app.slug === "custom-bingo-sheet" || app.slug === "photo-contact-sheet" ? (
                   <p>
                     任意の買い切りPro購入はAppleのApp Store（StoreKit）が処理します。支払い情報はAppleが処理し、本アプリや開発者は完全な決済情報を取得しません。
                   </p>
@@ -509,6 +517,14 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <li>The app does not save imported label text or QR payloads in history or templates.</li>
               </ul>
             )}
+            {app.slug === "cleaning-rhythm" && (
+              <ul>
+                <li>Room names, cleaning-task names, and intervals entered by the user</li>
+                <li>Task-completion dates and the next due dates calculated on the device</li>
+                <li>Language and local Premium-entitlement settings</li>
+                <li>JSON backups and CSV files the user explicitly creates</li>
+              </ul>
+            )}
             {app.slug === "cleantext-lab" && (
               <ul>
                 <li>Text you paste or the text and filename of a TXT or CSV file you choose with the system file picker</li>
@@ -664,7 +680,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Photo selection uses the iOS system photo picker. The app does not request full-library photo permission and receives only the items you select. Apple&apos;s services may retrieve a selected iCloud item.</p>
             )}
             {(app.billing !== false || app.iosStoreKitOnly) && (
-              app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" || app.slug === "cleantext-lab" || app.slug === "custom-bingo-sheet" || app.slug === "photo-contact-sheet" ? (
+              app.slug === "zanurami" || app.slug === "engine-note" || app.slug === "calibrqr" || app.slug === "cleaning-rhythm" || app.slug === "cleantext-lab" || app.slug === "custom-bingo-sheet" || app.slug === "photo-contact-sheet" ? (
                 <p>
                   The optional lifetime Pro purchase is processed by Apple&apos;s App Store (StoreKit). Apple processes payment information; the app and developer do not receive your complete payment details.
                 </p>

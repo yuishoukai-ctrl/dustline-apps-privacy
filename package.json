@@ -10,7 +10,7 @@
     "build": "vinext build",
     "export": "next build",
     "start": "vinext start",
-    "test": "npm run export && node --test tests/rendered-html.test.mjs"
+    "test": "npm run export && node --test tests/rendered-html.test.mjs tests/registry-contract.test.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
