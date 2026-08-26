@@ -252,7 +252,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               ) : app.slug === "photo-contact-sheet" ? (
                 <>
                   <p>選択した写真、タイトル、キャプション、生成したPDFは現在の作業中だけ端末上で処理され、開発者が運営するサーバーへ送信されません。システムの写真ピッカーは、選択したiCloud上の項目を取得する場合があります。</p>
-                  <p>選択写真はメタデータを除去した一時画像へ正規化します。一時画像と一時PDFは、セッションの初期化、変更、失敗、キャンセル、次回起動時に削除するよう設計しています。</p>
+                  <p>選択写真はメタデータを除去した作業用画像へ正規化し、現在のセッション中だけメモリ上に保持します。リセットまたはアプリ終了で作業用画像を破棄します。一時PDFは、リセット、内容変更、失敗、キャンセル、次回起動時に削除するよう設計しています。</p>
                 </>
               ) : (
                 <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
@@ -328,7 +328,7 @@ export default async function PrivacyPage({ params }: PageProps) {
               ) : app.slug === "custom-bingo-sheet" ? (
                 <p>保存したプロジェクトは、アプリ内で削除するか、本アプリをアンインストールするまで端末内に保持されます。アンインストールすると、保存プロジェクトと端末内のPro利用状態が削除されます。アプリ外へ保存したPDFや共有先の複製は、各保存先で別途削除してください。Appleが処理する購入関連データには、App Storeの保存方針が適用されます。</p>
               ) : app.slug === "photo-contact-sheet" ? (
-                <p>選択写真、タイトル、キャプションは履歴として保存しません。作業用の正規化画像と一時PDFは、セッションの初期化、変更、失敗、キャンセル、次回起動時に削除するよう設計しています。保存した写真・文字を含まないレイアウト設定はアプリ内で上書きでき、アンインストールするとレイアウト設定と端末内のPro利用状態が削除されます。アプリ外へ保存したPDFや共有先の複製は各保存先で別途削除してください。Appleが処理する購入関連データにはApp Storeの保存方針が適用されます。</p>
+                <p>選択写真、タイトル、キャプションは履歴として保存しません。作業用の正規化画像は現在のセッション中だけメモリ上に保持し、リセットまたはアプリ終了で破棄します。一時PDFは、リセット、内容変更、失敗、キャンセル、次回起動時に削除するよう設計しています。保存した写真・文字を含まないレイアウト設定はアプリ内で上書きでき、アンインストールするとレイアウト設定と端末内のPro利用状態が削除されます。アプリ外へ保存したPDFや共有先の複製は各保存先で別途削除してください。Appleが処理する購入関連データにはApp Storeの保存方針が適用されます。</p>
               ) : app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
               ) : (
@@ -597,7 +597,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             ) : app.slug === "photo-contact-sheet" ? (
               <>
                 <p>Selected photos, titles, captions, and generated PDFs are processed only on your device for the current working session and are not sent to a server operated by the developer. The system photo picker may retrieve a selected iCloud item.</p>
-                <p>Selected photos are normalized into temporary metadata-free images. Temporary images and PDFs are designed to be removed on reset, change, failure, cancellation, or the next cold launch.</p>
+                <p>Selected photos are normalized into metadata-free working images held only in memory for the current session and discarded on reset or when the app process ends. Temporary PDFs are designed to be removed on reset, content change, failure, cancellation, or the next cold launch.</p>
               </>
             ) : (
               <p>These records stay on your device and are not sent to a server operated by the developer.</p>
@@ -673,7 +673,7 @@ export default async function PrivacyPage({ params }: PageProps) {
             ) : app.slug === "custom-bingo-sheet" ? (
               <p>Saved projects remain on your device until you delete them in the app or uninstall the app. Uninstalling deletes saved projects and the local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
             ) : app.slug === "photo-contact-sheet" ? (
-              <p>Selected photos, titles, and captions are not retained as history. Working normalized images and temporary PDFs are designed to be removed on reset, change, failure, cancellation, or the next cold launch. You can overwrite the saved content-free layout preset; uninstalling deletes the preset and local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
+              <p>Selected photos, titles, and captions are not retained as history. Normalized working images are held only in memory for the current session and discarded on reset or when the app process ends. Temporary PDFs are designed to be removed on reset, content change, failure, cancellation, or the next cold launch. You can overwrite the saved content-free layout preset; uninstalling deletes the preset and local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
             ) : app.slug === "kyou-no-mikata" ? (
               <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
             ) : (

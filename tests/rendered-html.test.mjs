@@ -341,7 +341,7 @@ test("states Photo Contact Sheet selected-item, temporary-data, sharing, and iOS
   assert.match(en, /JPEG, PNG, or HEIC still images you explicitly select/);
   assert.match(en, /does not request full-library photo permission/);
   assert.match(en, /not sent to a server operated by the developer/);
-  assert.match(en, /temporary metadata-free images/);
+  assert.match(en, /metadata-free working images held only in memory/);
   assert.match(en, /one content-free layout preset/);
   assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
   assert.doesNotMatch(en, /Google Play Billing/);
@@ -351,7 +351,7 @@ test("states Photo Contact Sheet selected-item, temporary-data, sharing, and iOS
   assert.match(ja, /明示的に選択したJPEG、PNG、HEICの静止画/);
   assert.match(ja, /写真ライブラリ全体へのアクセス権限を要求せず/);
   assert.match(ja, /開発者が運営するサーバーへ送信されません/);
-  assert.match(ja, /メタデータを除去した一時画像/);
+  assert.match(ja, /メタデータを除去した作業用画像/);
   assert.match(ja, /写真・文字を含まない1件のレイアウト設定/);
   assert.match(ja, /AppleのApp Store（StoreKit）/);
   assert.doesNotMatch(ja, /Google Play Billing/);
