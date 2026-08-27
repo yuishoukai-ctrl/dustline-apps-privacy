@@ -18,7 +18,7 @@ test("exports the app directory without starter metadata", async () => {
   assert.match(html, /TrayVault/);
   assert.match(html, /BoothWorth/);
   assert.match(html, /RoastTrace/);
-  assert.match(html, /FlockLedger/);
+  assert.match(html, /EggCensus/);
   assert.match(html, /Batch Cost by DUSTLINE/);
   assert.match(html, /Zanurami/);
   assert.match(html, /ToolLife Pocket/);
@@ -44,7 +44,7 @@ for (const app of [
   { slug: "trayvault", en: "TrayVault", ja: "フリーズドライ記録" },
   { slug: "boothworth", en: "BoothWorth", ja: "クラフトフェア計画" },
   { slug: "roasttrace", en: "RoastTrace", ja: "コーヒー焙煎ログ" },
-  { slug: "flockledger", en: "FlockLedger", ja: "FlockLedger 鶏・採卵・費用台帳" },
+  { slug: "flockledger", en: "EggCensus", ja: "EggCensus 鶏・採卵・費用台帳" },
   { slug: "engine-note", en: "Engine Note", ja: "Engine Note", billing: false },
   { slug: "calibrqr", en: "CalibrQR", ja: "CalibrQR", billing: false },
   { slug: "cleaning-rhythm", en: "Cleaning Rhythm", ja: "Cleaning Rhythm", billing: false },
@@ -197,7 +197,7 @@ test("states the parent-managed child-data model for Homeschool Binder", async (
   assert.match(ja, /開発者のサーバーへ送信されません/);
 });
 
-test("states FlockLedger local-data and animal-care boundaries", async () => {
+test("states EggCensus local-data and animal-care boundaries", async () => {
   const [en, ja] = await Promise.all([
     page("en/privacy/flockledger/index.html"),
     page("ja/privacy/flockledger/index.html"),

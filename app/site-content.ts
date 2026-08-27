@@ -570,12 +570,12 @@ export const apps: AppInfo[] = [
     noticeJa:
       "本アプリはユーザーが入力した鶏群の活動記録を管理するもので、動物の診断、投薬・休薬期間の助言、卵の食用可否、会計・税務上の判断を行いません。",
     en: {
-      name: "FlockLedger: Chicken & Egg Log",
+      name: "EggCensus: Chicken & Egg Log",
       summary:
         "Record backyard flock eggs, feed, costs, sales, birds, and care notes privately on your device.",
     },
     ja: {
-      name: "FlockLedger 鶏・採卵・費用台帳",
+      name: "EggCensus 鶏・採卵・費用台帳",
       summary:
         "鶏群、採卵、飼料、費用、売上、個体、ケアメモを端末内で記録します。",
     },
