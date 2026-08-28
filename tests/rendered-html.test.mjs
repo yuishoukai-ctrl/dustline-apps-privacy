@@ -93,6 +93,29 @@ test("states Cleaning Rhythm local records, export, purchase, and safety boundar
   assert.match(ja, /清掃品質、衛生状態、消毒、安全要件/);
 });
 
+test("states Engine Note packet, photo, export, StoreKit, and deletion boundaries", async () => {
+  const [en, ja] = await Promise.all([
+    page("en/privacy/engine-note/index.html"),
+    page("ja/privacy/engine-note/index.html"),
+  ]);
+
+  assert.match(en, /Work performed, owner-entered readings, consumables/);
+  assert.match(en, /up to four photos per packet/);
+  assert.match(en, /fictional sample contains no personal information/);
+  assert.match(en, /single service-packet PDF can be previewed and shared on the free tier/);
+  assert.match(en, /does not send or store receipt contents/);
+  assert.match(en, /Deleting an equipment or service record in the app also deletes its associated app-owned photos/);
+  assert.doesNotMatch(en, /Google Play Billing/);
+
+  assert.match(ja, /実施内容、所有者の測定値、消耗品/);
+  assert.match(ja, /1パケット最大4枚/);
+  assert.match(ja, /架空サンプルは個人情報を含まず/);
+  assert.match(ja, /単一の整備パケットPDFは無料でプレビュー・共有/);
+  assert.match(ja, /レシート内容や完全な決済情報/);
+  assert.match(ja, /関連するアプリ内写真も削除/);
+  assert.doesNotMatch(ja, /Google Play Billing/);
+});
+
 test("states Your Ally Today no-retention, no-SDK, and wellbeing boundaries", async () => {
   const [en, ja] = await Promise.all([
     page("en/privacy/kyou-no-mikata/index.html"),
@@ -310,13 +333,13 @@ test("states Engine Note local-only service data, explicit sharing, and iOS Stor
   ]);
 
   assert.match(en, /Equipment name, type, manufacturer, model, serial number, current hours/);
-  assert.match(en, /CSV or PDF exports and JSON backups you explicitly create/);
+  assert.match(en, /Single-packet PDFs, aggregate CSV or PDF exports, and ZIP backups you explicitly create/);
   assert.match(en, /Apple&#x27;s App Store \(StoreKit\)/);
   assert.doesNotMatch(en, /Google Play Billing/);
   assert.match(en, /does not use an advertising SDK, third-party analytics SDK, or developer-operated cloud service/);
   assert.match(en, /does not collect or transmit information for advertising, analytics, or tracking/);
   assert.match(ja, /機器名、種類、メーカー、型式、製造番号、現在の稼働時間/);
-  assert.match(ja, /CSV・PDF書き出しおよびJSONバックアップ/);
+  assert.match(ja, /単一整備パケットPDF、集計CSV・PDF、ZIPバックアップ/);
   assert.match(ja, /AppleのApp Store（StoreKit）/);
   assert.doesNotMatch(ja, /Google Play Billing/);
   assert.match(ja, /広告SDK、第三者分析SDK、開発者が運営するクラウドサービスを使用しません/);

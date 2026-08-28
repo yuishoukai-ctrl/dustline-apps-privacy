@@ -138,8 +138,9 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <ul>
                   <li>機器名、種類、メーカー、型式、製造番号、現在の稼働時間、メモなどの機器情報</li>
                   <li>整備名、日付、稼働時間、部品、オイル仕様・量、費用、通貨、メモ、次回日付・稼働時間などの整備記録</li>
-                  <li>カメラで撮影または写真ライブラリから選択した機器写真、ユーザーが設定した日付ベースのリマインダー、言語設定、端末内のPro利用状態</li>
-                  <li>ユーザーが明示的に作成したCSV・PDF書き出しおよびJSONバックアップ</li>
+                  <li>完了した整備パケットに入力する実施内容、所有者の測定値、消耗品、および任意のキャプション</li>
+                  <li>カメラで撮影または写真ライブラリから選択した機器写真と整備パケット写真（1パケット最大4枚）、日付ベースのリマインダー、言語設定、端末内のPro利用状態</li>
+                  <li>ユーザーが明示的に作成する単一整備パケットPDF、集計CSV・PDF、ZIPバックアップ</li>
                 </ul>
               )}
               {app.slug === "calibrqr" && (
@@ -279,11 +280,17 @@ export default async function PrivacyPage({ params }: PageProps) {
               ) : (
                 <p>これらの記録は端末内に保存され、開発者が運営するサーバーへ送信されません。</p>
               )}
+              {app.slug === "engine-note" && (
+                <p>アプリ内の架空サンプルは個人情報を含まず、ユーザーが「保存」を選ぶまで記録として保存しません。写真とPDFの作成は端末上で行います。</p>
+              )}
               {app.slug === "tool-life-pocket" && (
                 <>
                   <p>本アプリの主要な記録機能はオフラインで動作します。Dustlineは、カッター、機械、履歴、写真、QRの各記録を収集、共有、分析、同期しません。本アプリは、位置情報、マイク音声、連絡先、バックグラウンドデータを収集しません。</p>
                   <p>カメラ権限は、プレミアムユーザーがローカルQRラベルのスキャンを選択した場合にのみ要求します。点検写真は、ユーザーがシステムのフォトピッカーで明示的に選択したものだけを扱います。</p>
                 </>
+              )}
+              {app.slug === "engine-note" && (
+                <p>本アプリはStoreKitが返す商品ID、購入状態、ローカライズ済み価格を使用し、購入済み状態を端末内にキャッシュする場合があります。レシート内容や完全な決済情報を開発者のサーバーへ送信・保存しません。</p>
               )}
               {app.slug === "try-clock" && (
                 <p>Androidのバックアップを有効にしている場合、端末設定に従ってアプリのローカルデータがGoogleアカウントへバックアップされる場合があります。</p>
@@ -340,6 +347,9 @@ export default async function PrivacyPage({ params }: PageProps) {
               {app.slug === "tool-life-pocket" && (
                 <p>JSONバックアップのインポート・エクスポートとCSVエクスポートは、ユーザーが操作した場合にのみ実行されます。JSON・CSVのエクスポートには、Google Playの購入トークン、注文ID、プレミアム権利情報を含めません。</p>
               )}
+              {app.slug === "engine-note" && (
+                <p>単一の整備パケットPDFは無料でプレビュー・共有できます。集計CSV・PDFとZIPバックアップの作成・復元はPro機能で、すべてユーザーが操作した場合にのみ実行されます。書き出しに購入レシートを含めません。</p>
+              )}
             </section>
             <section>
               <h2>5. 保存期間と削除</h2>
@@ -351,6 +361,8 @@ export default async function PrivacyPage({ params }: PageProps) {
                 <p>保存したプロジェクトは、アプリ内で削除するか、本アプリをアンインストールするまで端末内に保持されます。アンインストールすると、保存プロジェクトと端末内のPro利用状態が削除されます。アプリ外へ保存したPDFや共有先の複製は、各保存先で別途削除してください。Appleが処理する購入関連データには、App Storeの保存方針が適用されます。</p>
               ) : app.slug === "photo-contact-sheet" ? (
                 <p>選択写真、タイトル、キャプションは履歴として保存しません。作業用の正規化画像は現在のセッション中だけメモリ上に保持し、リセットまたはアプリ終了で破棄します。一時PDFは、リセット、内容変更、失敗、キャンセル、次回起動時に削除するよう設計しています。保存した写真・文字を含まないレイアウト設定はアプリ内で上書きでき、アンインストールするとレイアウト設定と端末内のPro利用状態が削除されます。アプリ外へ保存したPDFや共有先の複製は各保存先で別途削除してください。Appleが処理する購入関連データにはApp Storeの保存方針が適用されます。</p>
+              ) : app.slug === "engine-note" ? (
+                <p>機器または整備記録をアプリ内で削除すると、関連するアプリ内写真も削除されます。本アプリをアンインストールすると残りのローカルデータとPro利用状態のキャッシュが削除されます。アプリ外に保存したPDF、CSV、ZIPや共有先の複製は各保存先で別途削除してください。Appleが処理する購入関連データにはApp Storeの保存方針が適用されます。</p>
               ) : app.slug === "kyou-no-mikata" ? (
                 <p>入力内容と回答は保存されません。端末内の言語設定は、本アプリをアンインストールするか、Androidの設定からアプリデータを消去すると削除されます。Androidのバックアップ設定が有効な場合は、端末設定に従って言語設定がバックアップされることがあります。</p>
               ) : (
@@ -505,8 +517,9 @@ export default async function PrivacyPage({ params }: PageProps) {
               <ul>
                 <li>Equipment name, type, manufacturer, model, serial number, current hours, notes, and other equipment details you enter</li>
                 <li>Service label, date, hours, parts, oil specification and quantity, cost, currency, notes, and next date or hours that you enter</li>
-                <li>Equipment photos you take with the camera or choose from the photo library, date-based reminders you set, language preference, and a local Pro-entitlement cache</li>
-                <li>CSV or PDF exports and JSON backups you explicitly create</li>
+                <li>Work performed, owner-entered readings, consumables, and optional captions in a completed service packet</li>
+                <li>Equipment and service-packet photos you take with the camera or choose from the photo library (up to four photos per packet), date-based reminders, language preference, and a local Pro-entitlement cache</li>
+                <li>Single-packet PDFs, aggregate CSV or PDF exports, and ZIP backups you explicitly create</li>
               </ul>
             )}
             {app.slug === "calibrqr" && (
@@ -646,11 +659,17 @@ export default async function PrivacyPage({ params }: PageProps) {
             ) : (
               <p>These records stay on your device and are not sent to a server operated by the developer.</p>
             )}
+            {app.slug === "engine-note" && (
+              <p>The bundled fictional sample contains no personal information and is not saved as a record until you choose Save. Photo and PDF processing occurs on your device.</p>
+            )}
             {app.slug === "tool-life-pocket" && (
               <>
                 <p>The app&apos;s core record-keeping features work offline. Dustline does not collect, share, analyze, or sync cutter, machine, history, photo, or QR records. The app does not collect location, microphone audio, contacts, or background data.</p>
                 <p>The app requests camera permission only when a Premium user chooses to scan a local QR label. It handles an inspection photo only when you explicitly select it with the system photo picker.</p>
               </>
+            )}
+            {app.slug === "engine-note" && (
+              <p>The app uses the product ID, purchase state, and localized price returned by StoreKit and may cache an entitled state on your device. It does not send or store receipt contents or complete payment details on a developer-operated server.</p>
             )}
             {app.slug === "try-clock" && (
               <p>If Android device backup is enabled, Android may back up the local app database under your Google account settings.</p>
@@ -707,6 +726,9 @@ export default async function PrivacyPage({ params }: PageProps) {
             {app.slug === "tool-life-pocket" && (
               <p>JSON backup import and export and CSV export occur only when you initiate them. JSON and CSV exports do not include Google Play purchase tokens, order IDs, or Premium entitlement information.</p>
             )}
+            {app.slug === "engine-note" && (
+              <p>A single service-packet PDF can be previewed and shared on the free tier. Aggregate CSV/PDF and ZIP backup creation or restore are Pro features. Each action runs only when you initiate it, and exports do not include a purchase receipt.</p>
+            )}
           </section>
           <section>
             <h2>5. Retention and deletion</h2>
@@ -718,6 +740,8 @@ export default async function PrivacyPage({ params }: PageProps) {
               <p>Saved projects remain on your device until you delete them in the app or uninstall the app. Uninstalling deletes saved projects and the local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
             ) : app.slug === "photo-contact-sheet" ? (
               <p>Selected photos, titles, and captions are not retained as history. Normalized working images are held only in memory for the current session and discarded on reset or when the app process ends. Temporary PDFs are designed to be removed on reset, content change, failure, cancellation, or the next cold launch. You can overwrite the saved content-free layout preset; uninstalling deletes the preset and local Pro-entitlement state. You must separately delete PDFs or shared copies saved outside the app. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
+            ) : app.slug === "engine-note" ? (
+              <p>Deleting an equipment or service record in the app also deletes its associated app-owned photos. Uninstalling the app deletes remaining local records and the cached Pro state. Delete PDFs, CSV files, ZIP files, or shared copies saved outside the app separately at their destinations. Apple&apos;s App Store retention policy applies to purchase data processed by Apple.</p>
             ) : app.slug === "kyou-no-mikata" ? (
               <p>Entries and responses are not retained. Uninstall the app or clear its app data in Android settings to delete the local language preference. Android may back up that preference when device backup is enabled.</p>
             ) : (

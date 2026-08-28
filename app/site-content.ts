@@ -315,19 +315,21 @@ export const apps: AppInfo[] = [
     exporting: true,
     health: false,
     childrenAge: 13,
+    updatedDateEn: "August 27, 2026",
+    updatedDateJa: "2026年8月27日",
     noticeEn:
-      "Engine Note organizes service records and owner-entered intervals. It does not monitor equipment automatically, determine safety or readiness, or replace manufacturer guidance or professional inspection.",
+      "Engine Note creates owner-maintained service packets and organizes owner-entered intervals. It does not monitor equipment automatically, determine safety or readiness, or replace manufacturer guidance or professional inspection.",
     noticeJa:
-      "Engine Noteは、整備記録と所有者が入力した点検時期を整理するアプリです。機器を自動監視したり、安全性や使用可否を判定したり、メーカーの案内や専門家による点検の代替を行ったりするものではありません。",
+      "Engine Noteは、所有者が管理する整備パケットを作成し、所有者が入力した点検時期を整理するアプリです。機器を自動監視したり、安全性や使用可否を判定したり、メーカーの案内や専門家による点検の代替を行ったりするものではありません。",
     en: {
       name: "Engine Note",
       summary:
-        "Keep small-engine equipment, completed service, owner-entered intervals, photos, and exports private on your device.",
+        "Create owner-maintained service packets with work, readings, consumables, photos, and a shareable PDF on your device.",
     },
     ja: {
       name: "Engine Note",
       summary:
-        "小型エンジン機器、整備履歴、入力した点検時期、写真、書き出しデータを端末内で管理するアプリです。",
+        "実施内容、測定値、消耗品、写真をまとめた所有者管理の整備パケットとPDFを端末上で作成します。",
     },
   },
   {
